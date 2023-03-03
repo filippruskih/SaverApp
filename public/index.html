@@ -20,61 +20,9 @@
     <!-- Custom styles for this template-->
     <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <script src="functions/rtdb_write_new_user.js"></script>
-
-
 </head>
 
 <body id="page-top">
-
-    <script type="module">
-        // Import the functions you need from the SDKs you need
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-app.js";
-        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-analytics.js";
-        //import { getDatabase, ref, set } from "firebase/database";
-        import { getDatabase } from "https://www.gstatic.com/firebasejs/9.16.0/firebase-database.js";
-
-
-        // TODO: Add SDKs for Firebase products that you want to use
-        // https://firebase.google.com/docs/web/setup#available-libraries
-      
-        // Your web app's Firebase configuration
-        // For Firebase JS SDK v7.20.0 and later, measurementId is optional
-        const firebaseConfig = {
-          apiKey: "AIzaSyD1qniOgt-Ut-KnD8oAGgfaeu8niTesQCI",
-          authDomain: "saverhomeenergysavingapp.firebaseapp.com",
-          databaseURL: "https://saverhomeenergysavingapp-default-rtdb.europe-west1.firebasedatabase.app",
-          projectId: "saverhomeenergysavingapp",
-          storageBucket: "saverhomeenergysavingapp.appspot.com",
-          messagingSenderId: "736551254380",
-          appId: "1:736551254380:web:f8279de8cd35e89a0edb49",
-          measurementId: "G-QNTM2P0N9N"
-        };
-      
-        // Initialize Firebase
-        const app = initializeApp(firebaseConfig);
-        const analytics = getAnalytics(app);
-
-        //var firebaseRef = firebase.database().ref('users');
-        var firebaseRef = getDatabase();
-        document.querySelector('#send').addEventListener('click', ()=>{
-            const email = document.getElementById('email').value;
-            firebaseRef.push(email);
-            firebaseRef.set(email);
-        });
-
-
-
-        /* 
-        testing different method
-        */
-       // Import Admin SDK
-    const { getDatabase } = require('firebase-admin/database');
-
-    // Get a database reference to our blog
-    const db = getDatabase();
-    const ref = db.ref('server/saving-data/fireblog');
-      </script>
 
 
     <!-- Page Wrapper -->
@@ -110,7 +58,7 @@
             </div>
 
             <!-- Nav Item - Pages Collapse Menu -->
-           <!-- <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
                     aria-expanded="true" aria-controls="collapseTwo">
                     <i class="fas fa-fw fa-cog"></i>
@@ -198,7 +146,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="charts.html">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>General Usage Charts</span></a> 
+                    <span>General Usage Charts</span></a>
             </li>
 
             <!-- Nav Item - Rooms -->
@@ -207,19 +155,19 @@
                     aria-expanded="true" aria-controls="collapseLinks">
                     <i class="fas fa-fw fa-folder"></i>
                     <span>Rooms</span>
-                    </a>
-                    <div id="collapseLinks" class="collapse" aria-labelledby="headingLinks" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <h6 class="collapse-header">Select room to view usage:</h6>
-                            <a class="collapse-item" href="chartsSittingRoom.html">Sitting room</a>
-                            <a class="collapse-item" href="chartsBedroom.html">Bedroom</a>
-                            <a class="collapse-item" href="chartsSpareBedroom.html">Spare Bedroom</a>
-                            <div class="collapse-divider"></div>
-                            <h6 class="collapse-header">Other Pages:</h6>
-                            <a class="collapse-item" href="404.html">404 Page</a>
-                            <a class="collapse-item" href="blank.html">Blank Page</a>
-                        </div>
+                </a>
+                <div id="collapseLinks" class="collapse" aria-labelledby="headingLinks" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Select room to view usage:</h6>
+                        <a class="collapse-item" href="chartsSittingRoom.html">Sitting room</a>
+                        <a class="collapse-item" href="chartsBedroom.html">Bedroom</a>
+                        <a class="collapse-item" href="chartsSpareBedroom.html">Spare Bedroom</a>
+                        <div class="collapse-divider"></div>
+                        <h6 class="collapse-header">Other Pages:</h6>
+                        <a class="collapse-item" href="404.html">404 Page</a>
+                        <a class="collapse-item" href="blank.html">Blank Page</a>
                     </div>
+                </div>
             </li>
 
             <!-- Nav Item - Tables -->
@@ -268,7 +216,8 @@
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
                                 aria-label="Search" aria-describedby="basic-addon2">
                             <div class="input-group-append">
-                                <button class="btn btn-primary" type="button" onclick="writeUserData('usernmae', 'name', 'email')">
+                                <button class="btn btn-primary" type="button"
+                                    onclick="writeUserData('usernmae', 'name', 'email')">
                                     <i class="fas fa-search fa-sm"></i>
                                 </button>
 
@@ -372,8 +321,7 @@
                                 </h6>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_1.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_1.svg" alt="...">
                                         <div class="status-indicator bg-success"></div>
                                     </div>
                                     <div class="font-weight-bold">
@@ -384,8 +332,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_2.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_2.svg" alt="...">
                                         <div class="status-indicator"></div>
                                     </div>
                                     <div>
@@ -396,8 +343,7 @@
                                 </a>
                                 <a class="dropdown-item d-flex align-items-center" href="#">
                                     <div class="dropdown-list-image mr-3">
-                                        <img class="rounded-circle" src="img/undraw_profile_3.svg"
-                                            alt="...">
+                                        <img class="rounded-circle" src="img/undraw_profile_3.svg" alt="...">
                                         <div class="status-indicator bg-warning"></div>
                                     </div>
                                     <div>
@@ -429,8 +375,7 @@
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small">Filipp Ruskih</span>
-                                <img class="img-profile rounded-circle"
-                                    src="img/undraw_profile.svg">
+                                <img class="img-profile rounded-circle" src="img/undraw_profile.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -448,7 +393,7 @@
                                     Activity Log
                                 </a>
                                 <div class="dropdown-divider"></div>
-                                <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                <a class="dropdown-item" data-toggle="modal" data-target="#logoutModal" id="logout-button">
                                     <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                     Logout
                                 </a>
@@ -479,7 +424,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Total Bill (Monthly)</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">€142.67</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">€144.67</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-calendar fa-2x text-gray-300"></i>
@@ -513,7 +458,8 @@
                                 <div class="card-body">
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
-                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Potential Energy Saved
+                                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
+                                                Potential Energy Saved
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -645,26 +591,25 @@
                                     <h6 class="m-0 font-weight-bold text-primary">Savings Goal</h6>
                                 </div>
                                 <div class="card-body">
-                                    <h4 class="small font-weight-bold">Living Room<span
-                                            class="float-right">18%</span></h4>
+                                    <h4 class="small font-weight-bold">Living Room<span class="float-right">18%</span>
+                                    </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-danger" role="progressbar" style="width: 20%"
                                             aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Kitchen<span
-                                            class="float-right">43%</span></h4>
+                                    <h4 class="small font-weight-bold">Kitchen<span class="float-right">43%</span></h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-warning" role="progressbar" style="width: 40%"
                                             aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Bedroom 1<span
-                                            class="float-right">87%</span></h4>
+                                    <h4 class="small font-weight-bold">Bedroom 1<span class="float-right">87%</span>
+                                    </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar" role="progressbar" style="width: 60%"
                                             aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
                                     </div>
-                                    <h4 class="small font-weight-bold">Bedroom 2<span
-                                            class="float-right">89%</span></h4>
+                                    <h4 class="small font-weight-bold">Bedroom 2<span class="float-right">89%</span>
+                                    </h4>
                                     <div class="progress mb-4">
                                         <div class="progress-bar bg-info" role="progressbar" style="width: 80%"
                                             aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
@@ -760,10 +705,13 @@
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
                                             src="img/tips.jpg" alt="...">
                                     </div>
-                                    <p>Browse <a
-                                            target="_blank" rel="nofollow" href="https://www.amazon.com/alexa-skills/b?ie=UTF8&node=13727921011">Amazon Alexa Skills</a>, that
+                                    <p>Browse <a target="_blank" rel="nofollow"
+                                            href="https://www.amazon.com/alexa-skills/b?ie=UTF8&node=13727921011">Amazon
+                                            Alexa Skills</a>, that
                                         we plan to implement into our application!</p>
-                                    <a target="_blank" rel="nofollow" href="https://www.the-ambient.com/guides/how-to-use-alexa-features-tips-and-tricks-2282">Browse other Alexa features articles &rarr;</a>
+                                    <a target="_blank" rel="nofollow"
+                                        href="https://www.the-ambient.com/guides/how-to-use-alexa-features-tips-and-tricks-2282">Browse
+                                        other Alexa features articles &rarr;</a>
                                 </div>
                             </div>
 

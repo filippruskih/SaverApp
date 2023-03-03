@@ -1,7 +1,6 @@
-/*import { initializeApp } from "firebase-admin";
-import { getDatabase, ref, set } from "firebase/database";
-*/
 const functions = require("firebase-functions");
+const { initializeApp } = require('firebase-admin/app');
+
 
 // // Create and deploy your first functions
 // // https://firebase.google.com/docs/functions/get-started
@@ -10,7 +9,6 @@ const functions = require("firebase-functions");
 //   functions.logger.info("Hello logs!", {structuredData: true});
 //   response.send("Hello from Firebase!");
 // });
-
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -23,16 +21,3 @@ const firebaseConfig = {
     appId: "1:736551254380:web:f8279de8cd35e89a0edb49",
     measurementId: "G-QNTM2P0N9N"
   };
-
-/*const app = initializeApp(firebaseConfig);
-
-  function writeUserData(userId, name, email){
-    const db = getDatabase();
-    const reference = ref(db, 'users/' + userId);
-
-    set(reference, {
-        username: name,
-        email: email
-    });
-  }
-  writeUserData("Username test", "Fil", "fil@gmail.com");*/
