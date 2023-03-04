@@ -31,7 +31,8 @@ function register()
             var user = userCredential.user;
            document.cookie = "accessToken=" + user.za;
             document.cookie = "uid=" + user.uid;
-            window.location.href = "../index.html"
+            window.location.href = "../"
+            //window.location.href = "../index.html"
             // ...
         })
         .catch((error) => {
