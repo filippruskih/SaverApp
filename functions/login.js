@@ -1,11 +1,11 @@
 function login()
 {
-    const email = document.getElementById('inputEmail').value
-    const password = document.getElementById('inputPassword').value
+    const email = document.getElementById('email').value
+    const password = document.getElementById('passwordfield').value
 
      if (!email || !password)
     {
-        alert("Please fill in all the fields.");
+        alert("All fields must be filled in");
         return;
     }
 
