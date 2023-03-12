@@ -3,27 +3,60 @@ function register() {
     const email = document.getElementById("email").value;
     const password1 = document.getElementById("passwordfield1").value;
     const password2 = document.getElementById("passwordfield2").value;
-    var regularExpression = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
 
-    // Validate the user's input
-    if (!email || !password1 || !password2) {
-        alert("All fields must be filled in");
-        return;
+    const checkPasswordValidity = (value) => {
+        const isNonWhiteSpace = /^\S*$/;
+        if (!isNonWhiteSpace.test(value)) {
+            alert("Password must not contain Whitespaces.");
+            return "Password must not contain Whitespaces.";
+        }
+
+        const isContainsUppercase = /^(?=.*[A-Z]).*$/;
+        if (!isContainsUppercase.test(value)) {
+            alert("Password must have at least one Uppercase Character.");
+            return "Password must have at least one Uppercase Character.";
+        }
+
+        const isContainsLowercase = /^(?=.*[a-z]).*$/;
+        if (!isContainsLowercase.test(value)) {
+            alert("Password must have at least one Lowercase Character.");
+            return "Password must have at least one Lowercase Character.";
+        }
+
+        const isContainsNumber = /^(?=.*[0-9]).*$/;
+        if (!isContainsNumber.test(value)) {
+            alert("Password must contain at least one Digit.");
+            return "Password must contain at least one Digit.";
+        }
+
+        const isContainsSymbol =
+            /^(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]).*$/;
+        if (!isContainsSymbol.test(value)) {
+            alert("Password must contain at least one Special Symbol.");
+            return "Password must contain at least one Special Symbol.";
+        }
+
+        const isValidLength = /^.{8,16}$/;
+        if (!isValidLength.test(value)) {
+            alert("Password must be 8-16 Characters Long.");
+            return "Password must be 8-16 Characters Long.";
+        }
+        return null;
     }
 
-    if (password1 !== password2) {
-        alert("Passwords do not match - Please re-try");
-        return;
+    const message = checkPasswordValidity(password1);
+    const message2 = checkPasswordValidity(password2);
+
+    if (!message) {
+        console.log("Your Password is Valid and Strong.");
+    } else {
+        console.log(message);
     }
 
-    if ((password1.length < 8 || password2.length < 8) && (password1.length > 16 || password2.length > 16)) {
-        alert("Passwords must be at least 8 characters long and a maximum of 16 characters long");
-        return;
-    }
-
-    if (!regularExpression.test(password1) && !regularExpression.test(password2)) {
-        alert("Password should contain atleast one number and one special character");
-        return;
+    if (!message2) {
+        console.log("Your Password is Valid and Strong.");
+    } else {
+        console.log(message2);
     }
 
     firebase.auth().createUserWithEmailAndPassword(email, password1)
@@ -33,13 +66,10 @@ function register() {
             document.cookie = "accessToken=" + user.za;
             document.cookie = "uid=" + user.uid;
             window.location.href = "../"
-            //window.location.href = "../index.html"
-            // ...
         })
         .catch((error) => {
             var errorCode = error.code;
             var errorMessage = error.message;
             console.log(errorMessage, errorCode);
-            // ..
         });
 }

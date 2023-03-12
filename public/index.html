@@ -20,7 +20,35 @@
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
 
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-app.js"></script>
+    <!-- Add the Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
+
+
+
     <script src="/js/database.js"></script>
+    <!--<script>
+        function writeUserData() {
+            const userID1 = document.getElementById("useriddb").value;
+            const name1 = document.getElementById("usernamedb").value;
+            const email1 = document.getElementById("emaildb").value;
+            //const db = getDatabase();
+            const db = firebase.database();
+            set(ref(db, 'users/' + userID1), {
+                username: name1,
+                email: email1,
+            })
+                .then(() => {
+                    // Data saved successfully!
+                })
+                .catch((error) => {
+                    // The write failed...
+                });
+        }
+    </script>-->
 
 
 </head>
@@ -218,13 +246,12 @@
                                 aria-label="Search" aria-describedby="basic-addon2" id="usernamedb">
                             <input type="text" class="form-control bg-light border-0 small" placeholder="Email"
                                 aria-label="Search" aria-describedby="basic-addon2" id="emaildb">
-                                <input id="namebox" type="text" placeholder="name"> 
+                            <!--<input id="namebox" type="text" placeholder="name">-->
                             <div class="input-group-append">
-                                <button class="btn btn-primary"
-                                    onclick="writeUserData()">
+                                <!--<button class="btn btn-primary" onclick="writeUserData()">
                                     <i class="fas fa-search fa-sm"></i>
-                                </button>
-                                <button id="nameboxbtn" onclick="writeUserData()">Namebox</button>
+                                </button>-->
+                                <button id="nameboxbtn" onclick="writeUserData()">Write data</button>
                             </div>
                         </div>
                     </form>
@@ -807,7 +834,7 @@
     <script src="/__/firebase/8.4.2/firebase-database.js"></script>
     <script src="/__/firebase/8.4.2/firebase-firestore.js"></script>
     <!-- Initialize Firebase -->
-    <script src="/__/firebase/init.js"></script>
+    <script src="/__/firebase/init.js?useEmulator=true"></script>
 
 
 </body>
