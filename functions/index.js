@@ -13,7 +13,7 @@ const { initializeApp } = require('firebase-admin/app');
 const firebaseConfig = {
   apiKey: "AIzaSyD1qniOgt-Ut-KnD8oAGgfaeu8niTesQCI",
   authDomain: "saverhomeenergysavingapp.firebaseapp.com",
-  databaseURL: "https://saverhomeenergysavingapp-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: "https://saverapp.europe-west1.firebasedatabase.app/",
   projectId: "saverhomeenergysavingapp",
   storageBucket: "saverhomeenergysavingapp.appspot.com",
   messagingSenderId: "736551254380",
