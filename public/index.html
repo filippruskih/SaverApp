@@ -26,9 +26,6 @@
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-firestore.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.9.1/firebase-database.js"></script>
-
-
-
     <script src="/js/database.js"></script>
     <!--<script>
         function writeUserData() {
@@ -49,8 +46,6 @@
                 });
         }
     </script>-->
-
-
 </head>
 
 <body id="page-top">
@@ -735,6 +730,7 @@
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
                                             src="img/tips.jpg" alt="...">
                                     </div>
+                                
                                     <p>Browse <a target="_blank" rel="nofollow"
                                             href="https://www.amazon.com/alexa-skills/b?ie=UTF8&node=13727921011">Amazon
                                             Alexa Skills</a>, that
@@ -752,6 +748,10 @@
                                 </div>
                                 <div class="card-body">
                                     <p>We aim to implement new features of all sorts</p>
+                                </div>
+                                <div class="card-body">
+                                    <p>Click button below to print database</p>
+                                    <button class="btn btn-primary" onclick="readData()"></button>
                                 </div>
                             </div>
 
@@ -825,8 +825,8 @@
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
     <!-- Insert these scripts at the bottom of the HTML, but before you use any Firebase services -->
-    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
-    <script src="/__/firebase/8.4.2/firebase-app.js"></script>
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first 
+    <script src="/__/firebase/8.4.2/firebase-app.js"></script> -->
     <!-- If you enabled Analytics in your project, add the Firebase SDK for Analytics -->
     <script src="/__/firebase/8.4.2/firebase-analytics.js"></script>
     <!-- Add Firebase products that you want to use -->
