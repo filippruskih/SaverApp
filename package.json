@@ -3,7 +3,9 @@
     "babel-cli": "^6.26.0",
     "babel-preset-react-app": "^3.1.2",
     "dotenv": "^16.0.3",
-    "firebase": "^9.17.2"
+    "firebase": "^9.17.2",
+    "react-icons": "^4.8.0",
+    "react-router": "^6.9.0"
   },
   "devDependencies": {
     "eslint": "^8.32.0",
