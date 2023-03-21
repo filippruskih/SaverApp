@@ -3,8 +3,13 @@
 * {
   box-sizing: border-box;
   margin: 0;
-  padding: 0;
+  padding: 1;
   font-family: "Lato", sans-serif;
+}
+
+.logotext {
+  padding-left: 2%;
+  padding-bottom: 1%;
 }
 
 .home,
@@ -26,6 +31,7 @@
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  padding-left: 2%;
 }
 
 .menu-bars {
@@ -97,13 +103,13 @@ span {
 
 .App {
   text-align: center;
-  background-color: #e5e7eb;
+  padding: 2rem;
 }
 
 .users {
   margin: 0 auto;
   padding: 1rem;
-  background-color: #1e293b;
+  background-color: #dcdcdc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;
   text-align: center;
@@ -113,7 +119,7 @@ span {
 }
 
 .users h3 {
-  color: #eccf77;
+  color: #000;
   margin: 0;
   font-size: 1rem;
 }
@@ -121,11 +127,11 @@ span {
 .createUser {
   margin: auto;
   padding: 1rem;
-  background-color: #230052;
+  background-color: #dcdcdc;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   border-radius: 12px;
   text-align: center;
-  color: white;
+  border-color: #000;
   width: 35%;
 }
 input {
@@ -133,9 +139,7 @@ input {
   font-size: 16px;
   border-width: 1px;
   background-color: #ffffff;
-  color: #000000;
-  border-style: solid;
-  border-radius: 0px;
+  border-radius: 6px;
   margin-top: 10px;
 }
 input:focus {
@@ -145,11 +149,10 @@ input:focus {
 button {
   font: inherit;
   cursor: pointer;
-  background: #230052;
-  border: 3px solid #eccf77;
+  background: #000;
   color: white;
   padding: 0.75rem 3rem;
-  border-radius: 20px;
+  border-radius: 15px;
   margin-left: 3px;
   margin-top: 15px;
 }
@@ -160,5 +163,6 @@ button:focus {
 
 button:hover,
 button:active {
-  background-color: #654b88;
+  background-color: #230052;
+  border-color: #dcdcdc;
 }

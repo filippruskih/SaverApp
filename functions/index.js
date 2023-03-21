@@ -1,5 +1,6 @@
 const functions = require("firebase-functions");
 const { initializeApp } = require('firebase-admin/app');
+import { getFirestore } from "firebase/firestore";
 
 
 // // Create and deploy your first functions
@@ -23,5 +24,7 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
+const db = firebase.firestore();
+const usersRef = firebase.firestore().collection('users');
 // Initialize Realtime Database and get a reference to the service
 //const database = getDatabase(app);

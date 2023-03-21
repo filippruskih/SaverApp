@@ -36,7 +36,7 @@ function writeUserData() {
             // The write failed...
         });
 }*/
-
+/*
 function writeUserData1(userID, name, email) {
     //const userID = document.getElementById("useriddb").value;
     //const name = document.getElementById("usernamedb").value;
@@ -78,4 +78,27 @@ function writeUserData(userID, name, email) {
       username: name,
       email: email
     });
-  }
+  }*/
+
+  
+  //import { getFirestore } from "firebase/firestore";
+  const db = firebase.firestore();
+  const usersRef = firebase.firestore().collection('users');
+
+  usersRef.get().then((snapshot) => {
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    console.log("All data in 'books' collection", data); 
+    // [ { id: 'glMeZvPpTN1Ah31sKcnj', title: 'The Great Gatsby' } ]
+  });
+
+  firebase.firestore().collection("users")
+  .onSnapshot((snapshot) => {
+    const data = snapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+    console.log("All data in 'books' collection", data);
+  });
