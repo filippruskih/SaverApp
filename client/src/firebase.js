@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-//import { getFirestore } from "@firebase/firestore";
+import { getDatabase, ref } from "firebase/database";
 import {
     GoogleAuthProvider,
     getAuth,
@@ -18,17 +18,6 @@ import {
     addDoc,
 } from "firebase/firestore";
 
-/*const firebaseConfig = {
-    apiKey: process.env.REACT_APP_FIREBASE_APIKEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-    databaseURL: process.env.REACT_APP_FIREBASE_DATABASE_URL,
-    projectId: "saverhomeenergysavingapp",
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID,
-};*/
-
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
     apiKey: "AIzaSyD1qniOgt-Ut-KnD8oAGgfaeu8niTesQCI",
@@ -45,6 +34,7 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const database = getDatabase(app)
 const googleProvider = new GoogleAuthProvider();
 const signInWithGoogle = async () => {
     try {
@@ -66,14 +56,28 @@ const signInWithGoogle = async () => {
     }
 };
 
-const logInWithEmailAndPassword = async (email, password) => {
+/*const logInWithEmailAndPassword = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
     } catch (err) {
         console.error(err);
         alert(err.message);
     }
-};
+};*/
+
+const logInWithEmailAndPassword = async (email, password) => {
+    try {
+      const { user } = await signInWithEmailAndPassword(auth, email, password);
+      const userId = user.uid;
+      const dataRef = db.ref(`data/${userId}`);
+      const dataSnap = await dataRef.once("value");
+      const data = dataSnap.val();
+      return { user, data };
+    } catch (error) {
+      console.log(error);
+      throw error;
+    }
+  };
 
 const registerWithEmailAndPassword = async (name, email, password) => {
     try {
@@ -105,6 +109,17 @@ const logout = () => {
     signOut(auth);
 };
 
+function getUserData(userId) {
+    const dbRef = getDatabase().ref("users/" + userId);
+    return dbRef.once("value").then((snapshot) => {
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        return null;
+      }
+    });
+  }
+  
 export {
     auth,
     db,
@@ -114,4 +129,6 @@ export {
     registerWithEmailAndPassword,
     sendPasswordReset,
     logout,
+    getUserData,
+    database,
   };
