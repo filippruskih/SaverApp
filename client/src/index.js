@@ -15,6 +15,7 @@ import Register from "./Register";
 import Dashboard from "./Dashboard";
 import Reset from "./Reset";
 import "./App.css";
+import Info from "./components/Info";
 
 const AppLayout = () => (
   <>
@@ -45,6 +46,10 @@ const router = createBrowserRouter([
         path: "Dashboard",
         element: <Dashboard />,
       },
+      /*{
+        path: "/Info",
+        element: <Info />,
+      },*/
       {
         path: "Login",
         element: <Login />,
