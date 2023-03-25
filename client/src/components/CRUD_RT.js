@@ -152,13 +152,13 @@ function CRUD() {
         <div>
           {users && (
             <>
-              <div style={{ display: 'inline-block', width: '50%' }}>
-                <PieChart width={400} height={400}>
+              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto'}}>
+                <PieChart width={900} height={400}>
                   <Pie data={users} dataKey="kwhUsed" nameKey="area" cx="50%" cy="50%" fill="#8884d8" label />
                   <Tooltip />
                 </PieChart>
               </div>
-              <div style={{ display: 'inline-block', width: '50%' }}>
+              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto'}}>
                 <BarChart width={500} height={300} data={users}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="area" />

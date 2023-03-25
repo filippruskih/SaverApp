@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import { db } from "../firebase.js";
 import { addDoc, collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
 
-function CRUDdata() {
+function Account() {
     const [users, setUsers] = useState();
     const userCollectionRef = collection(db, "accountdetails");
 
@@ -32,7 +32,7 @@ function CRUDdata() {
                 name: newName,
                 surname: newSurname,
                 address: newAddress,
-                dob: Number(newDOB),
+                dob: newDOB,
                 email: newEmail,
                 phone: Number(newPhoneNum),
             });
@@ -43,7 +43,7 @@ function CRUDdata() {
                 name: newName,
                 surname: newSurname,
                 address: newAddress,
-                dob: Number(newDOB),
+                dob: newDOB,
                 email: newEmail,
                 phone: Number(newPhoneNum),
             };
@@ -109,7 +109,6 @@ function CRUDdata() {
                     <input
                         placeholder='Enter DOB'
                         value={newDOB}
-                        type="number"
                         onChange={(event) => {
                             setNewDOB(event.target.value)
                         }}
@@ -141,9 +140,9 @@ function CRUDdata() {
                                 return (
                                     <li className='users'>
                                         <h3>Name: {usr.name}</h3>
-                                        <h3>Surname: {usr.surname} kWh</h3>
+                                        <h3>Surname: {usr.surname}</h3>
                                         <h3>Address: {usr.address}</h3>
-                                        <h3>DOB: {usr.dob} kWh</h3>
+                                        <h3>DOB: {usr.dob}</h3>
                                         <h3>Email: {usr.email}</h3>
                                         <h3>Phone number: {usr.phone}</h3>
 
@@ -171,4 +170,4 @@ function CRUDdata() {
     );
 }
 
-export default CRUDdata;
+export default Account;

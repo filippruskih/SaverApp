@@ -16,6 +16,7 @@ import Dashboard from "./Dashboard";
 import Reset from "./Reset";
 import "./App.css";
 import Info from "./components/Info";
+import Account from "./components/Account";
 
 const AppLayout = () => (
   <>
@@ -46,10 +47,14 @@ const router = createBrowserRouter([
         path: "Dashboard",
         element: <Dashboard />,
       },
-      /*{
+      {
         path: "/Info",
         element: <Info />,
-      },*/
+      },
+      {
+        path: "Account",
+        element: <Account />,
+      },
       {
         path: "Login",
         element: <Login />,

@@ -148,6 +148,7 @@ span {
   border-color: #000;
   width: 35%;
 }
+
 input {
   padding: 5px;
   font-size: 16px;
@@ -156,6 +157,7 @@ input {
   border-radius: 6px;
   margin-top: 10px;
 }
+
 input:focus {
   outline: none;
 }
