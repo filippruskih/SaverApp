@@ -1,13 +1,11 @@
 import React, { useEffect, useState } from "react";
 import Layout from './Layout'
 import './App.css';
-import "./Dashboard.css";
-import { auth, getUserData } from "./firebase";
-import CRUD from "./components/CRUD_RT";
+import myImage from "./lightmode.png";
 
 function Dashboard() {
     return (
-        <Layout>
+        <Layout className={'App ${theme}'}>
         </Layout>
     );
 }

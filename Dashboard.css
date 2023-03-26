@@ -5,6 +5,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #263064;
 }
 
 .dashboard__container {
@@ -13,7 +14,7 @@
   display: flex;
   flex-direction: column;
   text-align: center;
-  background-color: #dcdcdc;
+  background-color: #626972;
   padding: 30px;
   align-content: center;
   border-radius: 12px;
