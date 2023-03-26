@@ -3,7 +3,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { useNavigate } from "react-router-dom";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import './App.css';
+import '../App.css';
 
 function Logout() {
     const [user, loading, error] = useAuthState(auth);

@@ -1,24 +1,51 @@
-import React, { useState } from "react";
+//import React, { useState } from "react";
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { SidebarData } from "./SidebarData";
 import "../App.css";
 import { IconContext } from "react-icons";
+import React, { useEffect, useState } from "react";
+import myImage from "./lightmodecopy.png";
+
 
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
-
   const showSidebar = () => setSidebar(!sidebar);
+
+  const [theme, setTheme] = useState('light');
+  const toggleTheme = () => {
+    if (theme === 'light') {
+      setTheme('dark');
+    } else {
+      setTheme('light');
+    }
+  };
+  useEffect(() => {
+    document.body.className = theme;
+  }, [theme]);
+
+  const buttonStyle = {
+    backgroundImage: `url(${myImage})`,
+    width: '25px',
+    height: '35px',
+    backgroundSize: 'contain',
+    backgroundRepeat: 'no-repeat',
+    border: 'none',
+    cursor: 'pointer',
+  };
 
   return (
     <>
-      <IconContext.Provider value={{ color: "undefined" }}>
+      <IconContext.Provider value={{ color: "black" }}>
         <div className="navbar">
           <Link to="#" className="menu-bars">
             <FaIcons.FaBars onClick={showSidebar} />
           </Link>
-          <h2 className="logotext">Saver</h2>
+          <h1 className="logotext">Saver</h1>
+          <div className="lightbtn" style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button className="lightbtnn" style={buttonStyle} onClick={toggleTheme}></button>
+          </div>
         </div>
         <nav className={sidebar ? "nav-menu active" : "nav-menu"}>
           <ul className="nav-menu-items" onClick={showSidebar}>

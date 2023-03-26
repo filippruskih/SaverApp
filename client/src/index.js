@@ -3,12 +3,8 @@ import { createRoot } from "react-dom/client";
 import {
   createBrowserRouter,
   RouterProvider,
-  Route,
-  Link,
   Outlet,
-  createRoutesFromElements,
 } from "react-router-dom";
-import Home from "./Home";
 import Navbar from "./components/Navbar";
 import Login from "./Login";
 import Register from "./Register";
@@ -24,16 +20,6 @@ const AppLayout = () => (
     <Outlet />
   </>
 );
-
-// const router = createBrowserRouter(
-//   createRoutesFromElements(
-//     <Route element={<AppLayout />}>
-//       <Route path="/" element={<Home />} />
-//       <Route path="/products" element={<Products />} />
-//       <Route path="/reports" element={<Reports />} />
-//     </Route>
-//   )
-// );
 
 const router = createBrowserRouter([
   {

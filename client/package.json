@@ -14,10 +14,12 @@
     "react-firebase-hooks": "^5.1.1",
     "react-router-dom": "^6.9.0",
     "react-scripts": "5.0.1",
+    "react-scroll": "^1.8.9",
     "recharts": "^2.5.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "build-css": "node-sass src/scss/ -o src/css/",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

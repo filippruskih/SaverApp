@@ -8,8 +8,13 @@
 }
 
 .logotext {
-  padding-left: 2%;
-  padding-bottom: 1%;
+  padding-left: 1%;
+  padding-bottom: 0.5%;
+  color: white;
+}
+
+.container {
+  background-color: #263064;
 }
 
 .home,
@@ -26,7 +31,7 @@
 
 /* Navbar CSS */
 .navbar {
-  background-color: #ffffff;
+  background-color: #263064;
   height: 80px;
   display: flex;
   justify-content: flex-start;
@@ -38,7 +43,7 @@
   margin-left: 2rem;
   font-size: 2rem;
   background: none;
-  color: #000;
+  color: white;
 }
 
 .nav-menu {
@@ -114,7 +119,6 @@ span {
   width: 35%;
   border-radius: 12px;
   margin-top: 20px;
-
 }
 
 .users {
@@ -149,6 +153,17 @@ span {
   width: 35%;
 }
 
+.createAccount {
+  margin: auto;
+  padding: 1rem;
+  background-color: #dcdcdc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.36);
+  border-radius: 12px;
+  text-align: center;
+  border-color: #000;
+  width: 35%;
+}
+
 input {
   padding: 5px;
   font-size: 16px;
@@ -156,6 +171,7 @@ input {
   background-color: #ffffff;
   border-radius: 6px;
   margin-top: 10px;
+  width: 70%;
 }
 
 input:focus {
@@ -169,6 +185,7 @@ button {
   color: white;
   padding: 0.75rem 3rem;
   border-radius: 15px;
+  border-color: #000;
   margin-left: 3px;
   margin-top: 15px;
 }
@@ -179,6 +196,6 @@ button:focus {
 
 button:hover,
 button:active {
-  background-color: #230052;
+  background-color: #074f86;
   border-color: #dcdcdc;
 }

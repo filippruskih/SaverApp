@@ -1,5 +1,5 @@
 import React from "react";
-import './App.css';
+import '../App.css';
 import { useState, useEffect } from "react";
 import { getDatabase, ref, push, onValue, update, remove, get } from "firebase/database";
 import { getUserData } from "../firebase";
@@ -21,7 +21,6 @@ function CRUD() {
   const getUsers = async () => {
     const currentUser = auth.currentUser;
     if (currentUser) {
-      //const userUid = currentUser.providerData[0].uid;
       const userUid = currentUser.uid;
       const userSnapshot = await get(ref(getDatabase(), `users/${userUid}`));
       if (userSnapshot.exists()) {
@@ -36,7 +35,6 @@ function CRUD() {
         setUsers([]);
       }
     }
-
   };
 
   const createUser = async () => {
@@ -48,7 +46,6 @@ function CRUD() {
           area: newArea,
           userID: Number(newUserID),
           kwhUsed: Number(newKwhUsed),
-          //username: newName,
         });
       } else {
         // Update the user
@@ -57,7 +54,6 @@ function CRUD() {
           area: newArea,
           userID: newUserID,
           kwhUsed: newKwhUsed,
-          //username: newName,
         };
         await update(ref(getDatabase(), `users/${uid}`), updates);
       }
@@ -69,12 +65,11 @@ function CRUD() {
     }
 
     setTimeout(getUsers, 1000);
-
+    
     setNewID("");
     setNewArea("");
     setnewKwhUsed("");
     setNewUserID("");
-    //setNewName("");
   };
 
   const updateUser = (usr) => {
@@ -82,7 +77,6 @@ function CRUD() {
     setNewArea(usr.area);
     setnewKwhUsed(usr.kwhUsed);
     setNewUserID(usr.userID);
-    //setNewName(usr.username);
   };
 
   const deleteUser = async (userID) => {
@@ -99,7 +93,6 @@ function CRUD() {
     if (userId) {
       // get the user data from the database based on the user ID
       console.log("User id logged in with = " + userId);
-      //getUserData(userId).then((data) => {
       getUsers(userId).then((data) => {
         setUserData(data);
         console.log("user data set");
@@ -110,7 +103,7 @@ function CRUD() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Real time data base </h1>
+        <h1>Energy Consumption throughout the household</h1>
         <div className="createUser">
           <input
             placeholder="Enter Area"
@@ -140,8 +133,7 @@ function CRUD() {
                   <ul className="users" key={key}>
                     <h3>Area: {usr.area}</h3>
                     <h3>kWh Used: {usr.kwhUsed}</h3>
-                    <br />
-                    <h3>User ID: {usr.userID}</h3>
+                    <h3>Cost of energy used: €{usr.kwhUsed*0.23}</h3>
                     <button onClick={() => { updateUser(usr); }}>Edit Data</button>
                     <button onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
                   </ul>
@@ -152,13 +144,13 @@ function CRUD() {
         <div>
           {users && (
             <>
-              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto'}}>
+              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto' }}>
                 <PieChart width={900} height={400}>
-                  <Pie data={users} dataKey="kwhUsed" nameKey="area" cx="50%" cy="50%" fill="#8884d8" label />
+                  <Pie data={users} dataKey="kwhUsed" nameKey="area" cx="50%" cy="50%" fill="#074f86" label />
                   <Tooltip />
                 </PieChart>
               </div>
-              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto'}}>
+              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto' }}>
                 <BarChart width={500} height={300} data={users}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="area" />

@@ -1,6 +1,6 @@
 import { Pie, PieChart, Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, Bar, } from 'recharts';
 import React from "react";
-import './App.css';
+import '../App.css';
 import { useState, useEffect, useMemo } from "react";
 import { db } from "../firebase.js";
 import { addDoc, collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
