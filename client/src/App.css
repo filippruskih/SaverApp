@@ -434,6 +434,7 @@ footer .quick-links a:hover {
 .logotext {
   padding-left: 0%;
   padding-bottom: 0%;
+  justify-content: center;
 }
 
 .lightbtn {
@@ -473,6 +474,8 @@ footer .quick-links a:hover {
   top: 0;
   left: -100%;
   transition: 850ms;
+  z-index: 999;
+
 }
 
 .nav-menu.active {
@@ -581,6 +584,30 @@ span {
   width: 35%;
 }
 
+.input1 {
+  padding: 5px;
+  font-size: 16px;
+  border-width: 1px;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: solid;
+  border-radius: 12px;
+  margin: 5px;
+  width: 400px;
+}
+
+.input2 {
+  padding: 5px;
+  font-size: 16px;
+  border-width: 1px;
+  background-color: #ffffff;
+  color: #000000;
+  border-style: solid;
+  border-radius: 12px;
+  margin: 5px;
+  width: 250px;
+}
+
 input {
   padding: 5px;
   font-size: 16px;
@@ -589,7 +616,7 @@ input {
   color: #000000;
   border-style: solid;
   border-radius: 12px;
-  margin-top: 10px;
+  margin: 10px;
 }
 
 input:focus {
@@ -678,6 +705,7 @@ button:active {
   border: none;
   color: white;
   background-color: black;
+  border-radius: 12px;
 }
 
 .dashboard div {

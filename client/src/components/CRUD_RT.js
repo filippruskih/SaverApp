@@ -109,6 +109,7 @@ function CRUD() {
           <input
             placeholder="Enter Area"
             value={newArea}
+            className="input2"
             onChange={(event) => {
               setNewArea(event.target.value);
             }}
@@ -117,6 +118,7 @@ function CRUD() {
           <input
             placeholder="Enter kWh used"
             value={newKwhUsed}
+            className="input2"
             onChange={(event) => {
               setnewKwhUsed(event.target.value);
             }}
@@ -134,7 +136,7 @@ function CRUD() {
                   <ul className="users" key={key}>
                     <h3>Area: {usr.area}</h3>
                     <h3>kWh Used: {usr.kwhUsed}</h3>
-                    <h3>Cost of energy used: €{usr.kwhUsed*0.23}</h3>
+                    <h3>Cost of energy used: €{(usr.kwhUsed*0.23).toFixed(2)}</h3>
                     <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
                     <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
                   </ul>

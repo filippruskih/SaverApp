@@ -7,7 +7,6 @@ import { IconContext } from "react-icons";
 import React, { useEffect, useState } from "react";
 import myImage from "./lightmodecopy.png";
 
-
 function Navbar() {
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
@@ -20,6 +19,7 @@ function Navbar() {
       setTheme('light');
     }
   };
+
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
@@ -32,7 +32,7 @@ function Navbar() {
     backgroundRepeat: 'no-repeat',
     border: 'none',
     cursor: 'pointer',
-  };
+  }
 
   return (
     <>
