@@ -2,6 +2,7 @@ import React from 'react';
 import "../App.css";
 import Section from '../HOC/Section';
 import bgImage from '../assets/home_bg.jpg';
+import Link from './UI/Link/Link';
 
 const home = () => {
   return (
@@ -17,6 +18,12 @@ const home = () => {
               Welcome to SAVER, where we meet all of your energy needs and help you save money by consulting you,
               showing you your energy usage and give you hints on how to save energy consumption.
             </h2>
+            <Link classes='btn btn-dark rounded-1' target='about'>
+              Learn More
+            </Link><span></span>
+            <Link target='contact' classes='btn btn-light text-dark rounded-1'>
+              Contact Us
+            </Link>
           </div>
         </div>
       </div>
