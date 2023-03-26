@@ -27,16 +27,11 @@ function Logout() {
     }, [user, loading]);
 
     return (
-            <div className="dashboard">
-                <div className="dashboard__container">
-                    Logged in as
-                    <div>{name}</div>
-                    <div>{user?.email}</div>
-                    <button className="dashboard__btn" onClick={logout}>
-                        Logout
-                    </button>
-                </div>
-            </div>
+        <div className="dashboard">
+            <button className="dashboard__btn" onClick={logout}>
+                Logout
+            </button>
+        </div>
     );
 }
 export default Logout;

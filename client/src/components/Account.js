@@ -126,6 +126,7 @@ function Account() {
                     <input
                         placeholder='Enter name'
                         value={newName}
+                        className="input1"
                         onChange={(event) => {
                             setNewName(event.target.value)
                         }}
@@ -133,6 +134,7 @@ function Account() {
                     <input
                         placeholder='Enter Surname'
                         value={newSurname}
+                        className="input1"
                         onChange={(event) => {
                             setNewSurname(event.target.value)
                         }}
@@ -140,6 +142,7 @@ function Account() {
                     <input
                         placeholder='Enter Address'
                         value={newAddress}
+                        className="input1"
                         onChange={(event) => {
                             setNewAddress(event.target.value)
                         }}
@@ -147,6 +150,7 @@ function Account() {
                     <input
                         placeholder='Enter DOB'
                         value={newDOB}
+                        className="input1"
                         onChange={(event) => {
                             setNewDOB(event.target.value)
                         }}
@@ -154,6 +158,7 @@ function Account() {
                     <input
                         placeholder='Enter Email'
                         value={newEmail}
+                        className="input1"
                         onChange={(event) => {
                             setNewEmail(event.target.value)
                         }}
@@ -162,13 +167,14 @@ function Account() {
                         placeholder='Enter Phone number'
                         value={newPhoneNum}
                         type="number"
+                        className="input1"
                         onChange={(event) => {
                             setNewPhoneNum(event.target.value)
                         }}
                     ></input>
                     <br />
-                    <button onClick={createUser}>Set Account Details</button>
-                    <button>Cancel</button>
+                    <button className="newbtn" onClick={createUser}>Set Account Details</button>
+                    <button className="newbtn">Cancel</button>
                 </div>
                 <div>
                     <ul>
