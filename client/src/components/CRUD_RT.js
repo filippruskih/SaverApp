@@ -2,8 +2,7 @@ import React from "react";
 import '../App.css';
 import { useState, useEffect } from "react";
 import { getDatabase, ref, push, onValue, update, remove, get } from "firebase/database";
-import { getUserData } from "../firebase";
-import { getAuth, useAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { Pie, PieChart, Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, Bar, } from 'recharts';
 
 
@@ -101,9 +100,11 @@ function CRUD() {
   }, []);
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Energy Consumption throughout the household</h1>
+    <div className='container pt-2 pb-5'>
+        <div className='section-header pt-5 pb-5 text-center'>
+          <h3 className='section-title'>
+            <span>Energy </span>Consumption
+          </h3>
         <div className="createUser">
           <input
             placeholder="Enter Area"
@@ -121,8 +122,8 @@ function CRUD() {
             }}
           />
           <br />
-          <button onClick={createUser}>Enter new data</button>
-          <button>Cancel</button>
+          <button className="newbtn" onClick={createUser}>Enter new data</button>
+          <button className="newbtn">Cancel</button>
         </div>
         <div>
           <ul>
@@ -134,8 +135,8 @@ function CRUD() {
                     <h3>Area: {usr.area}</h3>
                     <h3>kWh Used: {usr.kwhUsed}</h3>
                     <h3>Cost of energy used: €{usr.kwhUsed*0.23}</h3>
-                    <button onClick={() => { updateUser(usr); }}>Edit Data</button>
-                    <button onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
+                    <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
+                    <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
                   </ul>
                 );
               })}
@@ -163,7 +164,7 @@ function CRUD() {
             </>
           )}
         </div>
-      </header>
+      </div>
     </div>
   );
 }

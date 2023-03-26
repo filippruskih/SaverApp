@@ -12,28 +12,12 @@ body {
   font-family: 'Roboto', sans-serif;
 }
 
-.container pt-2 pb-5 {
-  text-align: center;
-}
-
-.aboutsection {
-  text-align: center;  
-  font-weight: bold;
-  font-family: 'Raleway', sans-serif;
-  position: relative;
-  margin-bottom: 2rem;
-  text-align: center;
-  font-size: small;
-}
-
 .section-header .section-title {
   font-weight: bold;
   color: #4e4e4e;
   font-family: 'Raleway', sans-serif;
   position: relative;
   margin-bottom: 2rem;
-  text-align: center;
-  font-size: xx-large;
 }
 
 .section-content {
@@ -42,8 +26,6 @@ body {
   font-family: 'Raleway', sans-serif;
   position: relative;
   margin-bottom: 2rem;
-  text-align: center;
-  font-size: x-large;
 }
 
 .section-header .section-title span {
@@ -70,7 +52,7 @@ body {
 }
 
 .aboutImage {
-  width: 80%;
+  width: 100%;
   max-height: 300px;
   overflow: hidden;
   border-radius: 12px;
@@ -85,6 +67,19 @@ body {
 .about-description {
   font-size: 0.9rem;
   color: #6f6f6f;
+}
+
+.contactcontainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.contactinput{
+  border-radius: 4px;
+  width: 600px;
+  margin: 10px;
 }
 
 #blog .card {
@@ -120,7 +115,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #003267;
+  background-color: #556d86;
   opacity: 0.8;
 }
 
@@ -134,11 +129,10 @@ body {
   font-weight: 700;
 }
 
-#facts .facts-container .facts-title {}
-
-footer {
-  background: #292f35;
+#facts .facts-container .facts-title {
 }
+
+
 
 footer .footer-title {
   position: relative;
@@ -402,13 +396,11 @@ footer .quick-links a:hover {
 }
 
 .service-box {
-  padding: 2rem;
+  padding: 4rem;
   border: 1px solid #eef1f5;
   margin-bottom: 1rem;
   background: white;
   border-radius: 12px;
-  align-items: center;
-  display: inline-block;
 }
 
 .service-box .service-icon {
@@ -428,7 +420,6 @@ footer .quick-links a:hover {
   color: #6f6f6f;
 }
 
-
 .dark {
   background-color: #000;
   color: #fff;
@@ -441,18 +432,20 @@ footer .quick-links a:hover {
 }
 
 .logotext {
-  padding-left: 1%;
-  padding-bottom: 0.5%;
+  padding-left: 0%;
+  padding-bottom: 0%;
 }
 
 .lightbtn {
   padding-left: 80%;
   padding-bottom: 1.2%;
+  border-radius: 12px;
 }
 
 .lightbtnn:hover {
   background-color: #000;
   border-color: #000;
+  border-radius: 12px;
 }
 
 /* Navbar CSS */
@@ -595,12 +588,40 @@ input {
   background-color: #ffffff;
   color: #000000;
   border-style: solid;
-  border-radius: 8px;
+  border-radius: 12px;
   margin-top: 10px;
 }
 
 input:focus {
   outline: none;
+}
+
+.newbtn{
+  font: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  background: #222123;
+  border: 2px solid #000000;
+  color: white;
+  background-color: black;
+  padding: 0.75rem 3rem;
+  border-radius: 10px;
+  margin-left: 3px;
+  margin-top: 15px;
+}
+
+.newbtn1 {
+  font: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  background: #a4a1a7;
+  border: 2px solid #000000;
+  color: white;
+  background-color: black;
+  padding: 0.75rem 3rem;
+  border-radius: 10px;
+  margin-left: 3px;
+  margin-top: 15px;
 }
 
 button {
