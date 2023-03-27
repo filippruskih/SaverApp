@@ -2,9 +2,9 @@ import React from "react";
 import '../App.css';
 import { useState, useEffect } from "react";
 import { getDatabase, ref, push, onValue, update, remove, get } from "firebase/database";
-import { getUserData } from "../firebase";
-import { getAuth, useAuth } from "firebase/auth";
-import { Pie, PieChart, Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, Bar, } from 'recharts';
+import { getAuth } from "firebase/auth";
+import bgImage from '../assets/myaccount.jpg';
+import Link from './UI/Link/Link';
 
 
 function Account() {
@@ -120,8 +120,22 @@ function Account() {
 
     return (
         <div className="App">
-            <header className="App-header">
-                <h1>Account Details </h1>
+            <div className='home-content p-5' style={{
+                backgroundImage: `url(${bgImage})`,
+                backgroundSize: 'cover',
+                backgroundRepeat: 'no-repeat',
+                backgroundPosition: 'center'
+            }}>
+                <div className='intro container text-center text-light'>
+                    <h1 className='title'>Account</h1>
+                </div>
+            </div>
+            <div className='section-header pt-5 pb-5 text-center'>
+                <h3 className='section-title'>
+                    <span>My </span>Account
+                </h3>
+            </div>
+            <h5>Please enter your details to update</h5>
                 <div className="createAccount">
                     <input
                         placeholder='Enter name'
@@ -176,13 +190,13 @@ function Account() {
                     <button className="newbtn" onClick={createUser}>Set Account Details</button>
                     <button className="newbtn">Cancel</button>
                 </div>
-                <div>
+                <div className="createAccount">
                     <ul>
                         {users &&
                             Object.keys(users).map((key) => {
                                 const usr = users[key];
                                 return (
-                                    <ul className="users" key={key}>
+                                    <ul className="users1" key={key}>
                                         <h3>Name: {usr.name}</h3>
                                         <h3>Surname: {usr.surname}</h3>
                                         <h3>Address: {usr.address}</h3>
@@ -198,7 +212,6 @@ function Account() {
                             })}
                     </ul>
                 </div>
-            </header>
         </div>
     );
 }

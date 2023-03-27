@@ -556,6 +556,25 @@ span {
   margin-left: 15px;
 }
 
+.users1 {
+  margin: 0 auto;
+  padding: 1rem;
+  background-color: #dcdcdc;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+  border-radius: 12px;
+  text-align: center;
+  color: black;
+  width: 95%;
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.users1 h3 {
+  color: #000;
+  margin: 0;
+  font-size: 1rem;
+}
+
 .users h3 {
   color: #000;
   margin: 0;
@@ -582,6 +601,8 @@ span {
   text-align: center;
   border-color: #000;
   width: 35%;
+  justify-content: center;
+  margin-bottom: 10px;
 }
 
 .input1 {

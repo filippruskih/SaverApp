@@ -3,12 +3,12 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
 import Section from '../HOC/Section';
-import bgImage from '../assets/info_bg.jpg';
+import bgImage from '../assets/infobg.jpg';
 import Link from './UI/Link/Link';
 import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar } from 'recharts';
-import blogImage1 from '../assets/blog1.jpg';
-import blogImage2 from '../assets/blog2.jpg';
-import blogImage3 from '../assets/blog3.jpg';
+import aboutImage from '../assets/alexa.jpg';
+import aboutImage2 from '../assets/rev.jpg';
+import { Card, Row, Col } from "react-bootstrap";
 
 const Info = () => {
     const data = [
@@ -23,6 +23,39 @@ const Info = () => {
         { typeOfSaving: 'Hand wash dishes', savings: 69.01 },
         { typeOfSaving: 'Insulate internal/externals of house', savings: 495.33 },
         { typeOfSaving: 'Insulate hot water cylinder', savings: 103.42 }
+    ];
+
+    const cardsData = [
+        {
+            title: "Close doors",
+            description: "Keeping the doors closed between rooms in your house or apartment can reduce heat loss by up to 5%, ",
+            image: "https://deantawood.co.uk/wp-content/uploads/2021/12/Seville_Oak_4L_S_L-watermark.jpg",
+        },
+        {
+            title: "Fill the dishwasher",
+            description: "Either fill it or don't use it, using a dishwasher is more sustainable than hand-washing dishes. Saving up to 50% on energy and 30% on water.",
+            image: "https://pyxis.nymag.com/v1/imgs/a1c/cf9/ff4231b2b6be410074c6d985158c91a0da-dishwasher-lede.rsquare.w1200.jpg",
+        },
+        {
+            title: "Keep radiator item free",
+            description: "Keeping curtains, sofas and other items away from your radiators so they can work to maximum efficiency can save up to 12% on their energy consumption.",
+            image: "https://st.hzcdn.com/simgs/pictures/salons/600x990mm-anthracite-square-panel-designer-horizontal-radiator-img~ec9124a307ed5c19_4-7673-1-19dc890.jpg",
+        },
+        {
+            title: "Thermostat settings",
+            description: "Turning your thermostat down by just 1°C can save around 7% of the energy you use to heat your home.",
+            image: "https://ezewarm.com/wp-content/uploads/2020/12/Pro-Wifi-Thermostat-with-App-Control.jpg",
+        },
+        {
+            title: "Smart devices",
+            description: "Using smart devices allows for utomation and scheduling to reduce energy consumption",
+            image: "https://i1.wp.com/flowboxinteractive.com/wp-content/uploads/2019/04/cropped-pixasquare-622732-min-1.jpg?zoom=2.5&w=3840&ssl=1",
+        },
+        {
+            title: "Go LED",
+            description: "Switching to LED lights throughout the household can help save up to 80% of energy consumption",
+            image: "https://media.architecturaldigest.com/photos/5d3f35c70921870009ed7e13/master/pass/Vintage_LargeGroup_Clear_Final.jpg",
+        },
     ];
 
 
@@ -48,20 +81,22 @@ const Info = () => {
     setTimeout(fetchUserName, 300);
 
     return (
-        <Section id='home'>
+        <Section id='about'>
             <div>
-                <div
-                    className='home-content p-5'
-                    style={{ backgroundImage: `url(${bgImage})` }}
-                >
+                <div className='home-content p-5' style={{
+                    backgroundImage: `url(${bgImage})`,
+                    backgroundSize: 'cover',
+                    backgroundRepeat: 'no-repeat',
+                    backgroundPosition: 'center'
+                }}>
                     <div className='intro container text-center text-light'>
                         <h1 className='title'>Useful Information</h1>
                         <h3>Picked just for</h3>
                         <h3>{name}</h3>
-                        <h2 className='sub-title mb-4'>
+                        <h5 className='sub-title mb-6'>
                             Welcome to SAVER, where we meet all of your energy needs and help you save money by consulting you,
                             showing you your energy usage and give you hints on how to save energy consumption.
-                        </h2>
+                        </h5>
                         <Link classes='btn btn-dark rounded-1' target='about'>
                             Learn More
                         </Link><span></span>
@@ -70,7 +105,6 @@ const Info = () => {
                         </Link>
                     </div>
                 </div>
-
                 <div className='container pt-2 pb-5'>
                     <div className='row'>
                         <div className='section-header pt-5 pb-5 text-center'>
@@ -90,80 +124,126 @@ const Info = () => {
                             <h3 className='section-title'>
                                 <span>More </span>Information
                             </h3>
-                            <h6 className='aboutsection'>
+                            <p className='aboutsection'>
                                 By following our expert advice and recommendations, you can easily and efficiently reduce your energy consumption, diminish your expenses and contribute towards a greener future by decreasing your carbon footprint. Regardless of whether you own a property, are a tenant in either private or social accommodation, are pursuing your studies or reside with your family, you have the potential to implement a number of practical and simple steps to curb your energy consumption.
-                            </h6>
-                            <h6>
+                            </p>
+                            <p>
                                 As inhabitants of our homes, it is our responsibility to actively take charge of our energy usage, and the good news is that it doesn't have to be a daunting task. Our comprehensive set of suggestions, ranging from minor tweaks to significant modifications, can be implemented with ease and result in notable savings of up to €566 per annum* on your bills.
-                            </h6>
-                            <h6>
+                            </p>
+                            <p>
                                 So, why not explore our recommendations and become a part of the solution for a more sustainable future while simultaneously experiencing the benefits of a reduced energy bill? Start today, and take a step towards a greener and more affordable lifestyle.
-                            </h6>
-                            <div className='section-content'>
-                                <div className='row'>
-                                    <div className='col-lg-4 mb-3'>
-                                        <div className='card rounded-0'>
-                                            <img src={blogImage1} className='card-img-top' alt='Blog 1' />
-                                            <div className='card-body'>
-                                                <h5 className='card-title'>Amazon Alexa features coming soon!</h5>
-                                                <p className='card-text'>
+                            </p>
+                            <div className='container pt-2 pb-5'>
+                                <div className='section-header pt-5 pb-5 text-center'>
+                                    <h3 className='section-title'>
+                                        <span>Links </span>And Tips
+                                    </h3>
+                                    <h6 className='aboutsection'>
+                                        Some brief information on how to save money, energy used and some general tips, along with some links.
+                                    </h6>
+                                </div>
+                                <div className='section-content'>
+                                    <div className='row'>
+                                        <div style={{ display: 'inline-block', width: '30%', margin: '0 auto' }}>
+                                            <div className='aboutImage'>
+                                                <img src={aboutImage} alt='about company' />
+                                            </div>
+                                        </div>
+                                        <div style={{ display: 'inline-block', width: '30%', margin: '8% auto' }}>
+                                            <a href='https://www.amazon.com/b?ie=UTF8&node=21576558011' className='btn btn-sm btn-primary'>Amazon Alexa</a>
+                                        </div>
+                                        <div style={{ display: 'inline-block', width: '30%', margin: '0 auto' }}>
+                                            <h3 className='about-title'>Amazon Alexa</h3>
+                                            <div className='about-description'>
+                                                <p>
                                                     Alexa, the voice assistant developed by Amazon, has several energy consumption-saving features, such as the ability to control smart home devices, including smart thermostats and smart plugs, which can help users reduce their energy usage. Additionally, Alexa can provide energy-saving tips, track energy usage, and even suggest changes to users' daily routines to optimize energy consumption.
                                                 </p>
-                                                <a href='https://www.amazon.com/b?ie=UTF8&node=21576558011' className='btn btn-sm btn-primary'>
-                                                    Amazon Alexa
-                                                </a>
                                             </div>
                                         </div>
                                     </div>
-                                    <div className='col-lg-4 mb-3'>
-                                        <div className='card rounded-0'>
-                                            <img src={blogImage2} className='card-img-top' alt='Blog 2' />
-                                            <div className='card-body'>
-                                                <h5 className='card-title'>A more in depth graph implementation!</h5>
-                                                <p className='card-text'>
-                                                    We are currently working on integrating new pie charts, bar charts, histograms and more! this will bring your energy consumption observation to a whole new level. 3D graphs, machine learning algorithms and more! Click read more to see more on this topic.
+                                </div>
+                                <div className='section-content'>
+                                    <div className='row'>
+
+                                        <div style={{ display: 'inline-block', width: '30%', margin: '0 auto' }}>
+                                            <h3 className='about-title'>Revenue hints</h3>
+                                            <div className='about-description'>
+                                                <p>
+                                                    €600 Electricity Credit available to all Irish households, the final payment of which will be made in March 2023.
+
+                                                    A new grant for businesses using LPG or kerosene.
+
+                                                    €700 - €8000 grants available for attic and cavity wall insulation depending on the upgrades selected.
+
+                                                    €64 estimated savings through the extension of VAT reduction on energy bills, which has now been extended to 31 October 2023.
+
+                                                    €89 estimated savings from the PSO Levy Reduction
                                                 </p>
-                                                <a href='/info' className='btn btn-sm btn-primary'>
-                                                    Read More
-                                                </a>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className='col-lg-4 mb-3'>
-                                        <div className='card rounded-0'>
-                                            <img src={blogImage3} className='card-img-top' alt='Blog 3' />
-                                            <div className='card-body'>
-                                                <h5 className='card-title'>New Business Deal Incoming</h5>
-                                                <p className='card-text'>
-                                                    We plan to include partnerships with energy companies, utility providers, and smart home device manufacturers to offer the app as a value-added service to their customers. Collaborations with building management companies could provide opportunities for the app to be integrated into smart buildings and homes, offering a comprehensive energy management solution for tenants and homeowners.
-                                                </p>
-                                                <a href='/info' className='btn btn-sm btn-primary'>
-                                                    Read More
-                                                </a>
+                                        <div style={{ display: 'inline-block', width: '30%', margin: '8% auto' }}>
+                                            <a href='https://www.gov.ie/en/campaigns/6ca43-reduce-your-use/?gclid=CjwKCAjw_YShBhAiEiwAMomsEGQGBSvKHm30gywY9i5K-EJqdMBw33VFwzIFJ_UKEicGXVVBbd5T_hoCO4IQAvD_BwE' className='btn btn-sm btn-primary'>Revenue Hints</a>
+                                        </div>
+                                        <div style={{ display: 'inline-block', width: '30%', margin: '0 auto' }}>
+                                            <div className='aboutImage'>
+                                                <img src={aboutImage2} alt='about company' />
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <h3 className='section-title'>
-                                <span>Reference </span>Section
-                            </h3>
-                            <h6 className='aboutsection'>
-                                <ul>
-                                    <li>https://energysavingtrust.org.uk/hub/quick-tips-to-save-energy/</li>
-                                    <li>https://www.amazon.com/b?ie=UTF8&node=21576558011</li>
-                                </ul>
-                            </h6>
-                            <h6>
-
-                            </h6>
-                            <h6>
-
-                            </h6>
+                            <div className='container pt-2 pb-5'>
+                                <div className='section-header pt-5 pb-5 text-center'>
+                                    <h3 className='section-title'>
+                                        <span>Quick </span>Tips
+                                    </h3>
+                                    <h6 className='aboutsection'>
+                                        Some quick tips that can save you hundreds in the long run.
+                                    </h6>
+                                </div>
+                                <div>
+                                    <Row>
+                                        {cardsData.slice(0, 3).map((card, index) => (
+                                            <Col key={index}>
+                                                <Card style={{ height: "100%", width: '100%', margin: '10px 10px' }}>
+                                                    <Card.Img variant="top" src={card.image} />
+                                                    <Card.Body>
+                                                        <Card.Title>{card.title}</Card.Title>
+                                                        <Card.Text>{card.description}</Card.Text>
+                                                    </Card.Body>
+                                                </Card>
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                    <Row>
+                                        {cardsData.slice(3, 6).map((card, index) => (
+                                            <Col key={index}>
+                                                <Card style={{ height: "100%", width: '100%', margin: '10px 10px' }}>
+                                                    <Card.Img variant="top" src={card.image} />
+                                                    <Card.Body>
+                                                        <Card.Title>{card.title}</Card.Title>
+                                                        <Card.Text>{card.description}</Card.Text>
+                                                    </Card.Body>
+                                                </Card>
+                                            </Col>
+                                        ))}
+                                    </Row>
+                                </div>
+                            </div>
+                            <div>
+                                <h3 className='section-title'>
+                                    <span>Reference </span>Section
+                                </h3>
+                                <h6 className='aboutsection'>
+                                    <ul>
+                                        <li>https://energysavingtrust.org.uk/hub/quick-tips-to-save-energy/</li>
+                                        <li>https://www.amazon.com/b?ie=UTF8&node=21576558011</li>
+                                    </ul>
+                                </h6>
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
         </Section>
     );
