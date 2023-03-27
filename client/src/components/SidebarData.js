@@ -23,39 +23,9 @@ export const SidebarData = [
     cName: "nav-text",
   },
   {
-    title: "Login",
-    path: "/login",
-    icon: <IoIcons.IoIosPaper />,
-    cName: "nav-text",
-  },
-  {
-    title: "Register",
-    path: "/register",
-    icon: <IoIcons.IoIosPaper />,
-    cName: "nav-text",
-  },
-  {
-    title: "Reset Email",
-    path: "/reset",
-    icon: <FaIcons.FaCartPlus />,
-    cName: "nav-text",
-  },
-  {
-    title: "Team",
-    path: "/team",
+    title: "Tips and Tricks Sharing",
+    path: "/PublicComments",
     icon: <IoIcons.IoMdPeople />,
-    cName: "nav-text",
-  },
-  {
-    title: "Contact",
-    path: "/messages",
-    icon: <FaIcons.FaEnvelopeOpenText />,
-    cName: "nav-text",
-  },
-  {
-    title: "Support",
-    path: "/support",
-    icon: <IoIcons.IoMdHelpCircle />,
     cName: "nav-text",
   },
 ];

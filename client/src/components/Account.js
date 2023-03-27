@@ -191,8 +191,8 @@ function Account() {
                                         <h3>Phone number: {usr.phone}</h3>
                                         <br />
                                         <h3>User ID: {usr.userID}</h3>
-                                        <button onClick={() => { updateUser(usr); }}>Edit Data</button>
-                                        <button onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
+                                        <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
+                                        <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
                                     </ul>
                                 );
                             })}

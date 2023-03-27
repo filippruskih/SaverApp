@@ -5,18 +5,17 @@ import {
   RouterProvider,
   Outlet,
 } from "react-router-dom";
-import Navbar from "./components/Navbar";
 import Login from "./Login";
-import Register from "./Register";
+import PublicComments from "./components/PublicComments";
 import Dashboard from "./Dashboard";
-import Reset from "./Reset";
 import "./App.css";
 import Info from "./components/Info";
 import Account from "./components/Account";
+import Nav from './components/UI/Nav/Nav';
 
 const AppLayout = () => (
   <>
-    <Navbar />
+    <Nav />
     <Outlet />
   </>
 );
@@ -42,16 +41,8 @@ const router = createBrowserRouter([
         element: <Account />,
       },
       {
-        path: "Login",
-        element: <Login />,
-      },
-      {
-        path: "Register",
-        element: <Register />,
-      },
-      {
-        path: "Reset",
-        element: <Reset />,
+        path: "PublicComments",
+        element: <PublicComments />,
       },
     ],
   },
