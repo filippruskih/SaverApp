@@ -1,6 +1,5 @@
 //import Footer from './components/Footer'
 import Logout from './components/Logout'
-import Footer from './components/Footer'
 import CRUD_RT from './components/CRUD_RT'
 import Home from './components/Home';
 import About from './components/About';
@@ -23,7 +22,6 @@ const Layout = ({ children }) => {
       <Contact />
       <MapMarker />
       <Logout className={'App ${theme}'}/>
-      <Footer />
     </>
   )
 }
