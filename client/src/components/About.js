@@ -12,7 +12,7 @@ const about = () => {
             <span>Our </span>Company
           </h3>
           <h6 className='aboutsection'>
-            Individualised quality care that meets the total needs of the
+            Individualised quality service that meets the total needs of the
             user to aid in saving money at the end of their billing period.
           </h6>
         </div>

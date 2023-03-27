@@ -1,7 +1,5 @@
 import React from 'react';
-
 import Section from '../HOC/Section';
-
 import blogImage1 from '../assets/blog1.jpg';
 import blogImage2 from '../assets/blog2.jpg';
 import blogImage3 from '../assets/blog3.jpg';
@@ -28,7 +26,7 @@ const Blog = () => {
                   <p className='card-text'>
                   Alexa, the voice assistant developed by Amazon, has several energy consumption-saving features, such as the ability to control smart home devices, including smart thermostats and smart plugs, which can help users reduce their energy usage. Additionally, Alexa can provide energy-saving tips, track energy usage, and even suggest changes to users' daily routines to optimize energy consumption.
                   </p>
-                  <a href='#!' className='btn btn-sm btn-primary'>
+                  <a href='info' className='btn btn-sm btn-primary'>
                     Read More
                   </a>
                 </div>
@@ -42,7 +40,7 @@ const Blog = () => {
                   <p className='card-text'>
                     We are currently working on integrating new pie charts, bar charts, histograms and more! this will bring your energy consumption observation to a whole new level. 3D graphs, machine learning algorithms and more! Click read more to see more on this topic.  
                   </p>
-                  <a href='#!' className='btn btn-sm btn-primary'>
+                  <a href='/info' className='btn btn-sm btn-primary'>
                     Read More
                   </a>
                 </div>
@@ -56,7 +54,7 @@ const Blog = () => {
                   <p className='card-text'>
                   We plan to include partnerships with energy companies, utility providers, and smart home device manufacturers to offer the app as a value-added service to their customers. Collaborations with building management companies could provide opportunities for the app to be integrated into smart buildings and homes, offering a comprehensive energy management solution for tenants and homeowners. 
                   </p>
-                  <a href='#!' className='btn btn-sm btn-primary'>
+                  <a href='/info' className='btn btn-sm btn-primary'>
                     Read More
                   </a>
                 </div>

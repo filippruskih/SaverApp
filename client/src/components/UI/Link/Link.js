@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-scroll';
 
-const link = props => {
+const link1 = props => {
   return (
     <Link
       className={props.classes}
@@ -18,4 +18,4 @@ const link = props => {
   );
 };
 
-export default link;
+export default link1;
