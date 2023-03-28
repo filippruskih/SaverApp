@@ -14,6 +14,8 @@ import Account from "./components/Account";
 import Nav from './components/Nav';
 import Footer from "./components/Footer";
 import Logout from './components/Logout';
+import Register from './Register';
+import Reset from './Reset';
 
 const AppLayout = () => (
   <>
@@ -48,6 +50,14 @@ const router = createBrowserRouter([
       {
         path: "PublicComments",
         element: <PublicComments />,
+      },
+      {
+        path: "register",
+        element: <Register />,
+      },
+      {
+        path: "reset",
+        element: <Reset />,
       },
     ],
   },
