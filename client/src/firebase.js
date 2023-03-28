@@ -17,6 +17,7 @@ import {
     where,
     addDoc,
 } from "firebase/firestore";
+import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
@@ -55,15 +56,6 @@ const signInWithGoogle = async () => {
         alert(err.message);
     }
 };
-
-/*const logInWithEmailAndPassword = async (email, password) => {
-    try {
-        await signInWithEmailAndPassword(auth, email, password);
-    } catch (err) {
-        console.error(err);
-        alert(err.message);
-    }
-};*/
 
 const logInWithEmailAndPassword = async (email, password) => {
     try {
@@ -119,6 +111,34 @@ function getUserData(userId) {
       }
     });
   }
+
+  const messaging = getMessaging(app);
+
+  export const fetchToken = (setTokenFound) => {
+    return getToken(messaging, {vapidKey: 'BANo4A4CUJOG8mymaoRCEbZC5ojZsC9tlKZSmUKC21nWXebfqC2G-z3HQa8s6fpjlzVWk95hBjDRm_bPCkmR3jg'}).then((currentToken) => {
+      if (currentToken) {
+        console.log('current token for client: ', currentToken);
+        setTokenFound(true);
+        // Track the token -> client mapping, by sending to backend server
+        // show on the UI that permission is secured
+      } else {
+        console.log('No registration token available. Request permission to generate one.');
+        setTokenFound(false);
+        // shows on the UI that permission is required 
+      }
+    }).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+      // catch error while creating client token
+    });
+  }
+  
+  export const onMessageListener = () =>
+    new Promise((resolve) => {
+      onMessage(messaging, (payload) => {
+        resolve(payload);
+      });
+  });
+  
   
 export {
     auth,
