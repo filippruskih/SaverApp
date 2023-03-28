@@ -1,6 +1,6 @@
 import React from 'react';
 import "../App.css";
-import Section from '../HOC/Section';
+import Section from './Section';
 
 const Service = () => {
   return (

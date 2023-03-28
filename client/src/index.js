@@ -11,7 +11,7 @@ import Dashboard from "./Dashboard";
 import "./App.css";
 import Info from "./components/Info";
 import Account from "./components/Account";
-import Nav from './components/UI/Nav/Nav';
+import Nav from './components/Nav';
 import Footer from "./components/Footer";
 import Logout from './components/Logout';
 
@@ -24,6 +24,7 @@ const AppLayout = () => (
   </>
 );
 
+//routes for the sidebar items to redirect the user
 const router = createBrowserRouter([
   {
     element: <AppLayout />,

@@ -1,17 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { auth, logInWithEmailAndPassword, signInWithEmailAndPassword, signInWithGoogle } from "./firebase";
+import { auth, logInWithEmailAndPassword, signInWithGoogle } from "./firebase";
 import { useAuthState } from "react-firebase-hooks/auth";
 import "./App.css";
 
 function Login() {
+    //if user is logged in and authenticated and redirects them to the homepage
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [user, loading, error] = useAuthState(auth);
     const navigate = useNavigate();
     useEffect(() => {
         if (loading) {
-            // maybe trigger a loading screen
             return;
         }
         if (user) navigate("/dashboard", { replace: true });

@@ -1,27 +1,27 @@
-import { Pie, PieChart, Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, Bar, } from 'recharts';
 import React from "react";
 import '../App.css';
 import { useState, useEffect, useMemo } from "react";
 import { db } from "../firebase.js";
 import { addDoc, collection, getDocs, updateDoc, doc, deleteDoc } from "firebase/firestore";
-import Section from '../HOC/Section';
-import aboutImage from '../assets/about.jpg';
+import Section from './Section';
 import bgImage1 from '../assets/bgImage1.jpg';
-import Link from './UI/Link/Link';
+import Link from './Link';
 
 function Team() {
+    //commented code before - defining state hooks and ref fore firestore collections
     const [users, setUsers] = useState();
     const userCollectionRef = collection(db, "userdata");
-
     const [newID, setNewID] = useState("");
-    const [newComment, setNewkWh_used] = useState("");
+    const [newComment, setNewComment] = useState("");
     const [newPublicUsername, setNewArea] = useState("");
 
+    //retrieves info from collection
     const getUsers = async () => {
         const data = await getDocs(userCollectionRef);
         setUsers(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     };
 
+    //defines a new array of objects using the user data
     const data2 =
         users &&
         users.map((usr) => {
@@ -31,13 +31,13 @@ function Team() {
             }));
         });
 
+        //gets users on initial load of the page
     useEffect(() => {
         getUsers();
     }, []);
 
-
+    //commented code before in CRUD_RT.js
     const createUser = async () => {
-
         if (newID.length < 1) {
             await addDoc(userCollectionRef, {
                 publicusername: newPublicUsername,
@@ -57,13 +57,13 @@ function Team() {
 
         setNewID("");
         setNewArea("");
-        setNewkWh_used("");
+        setNewComment("");
     };
 
     const updateUser = (usr) => {
         setNewID(usr.id);
         setNewArea(usr.publicusername);
-        setNewkWh_used(usr.comment);
+        setNewComment(usr.comment);
     };
 
     const deleteUser = async (id) => {
@@ -74,7 +74,6 @@ function Team() {
     };
 
     return (
-
         <Section id='about'>
             <div className='home-content p-5' style={{
                 backgroundImage: `url(${bgImage1})`,
@@ -102,7 +101,7 @@ function Team() {
                     <span>Comment </span>Section
                 </h3>
                 <h6 className='aboutsection'>
-                Users Area To Share Energy-Saving Tips and Hints
+                    Users Area To Share Energy-Saving Tips and Hints
                 </h6>
             </div>
             <div className="App">
@@ -122,34 +121,23 @@ function Team() {
                             className="input1"
                             value={newComment}
                             onChange={(event) => {
-                                setNewkWh_used(event.target.value)
+                                setNewComment(event.target.value)
                             }}
                         ></input>
                         <br />
                         <button className="newbtn" onClick={createUser}>Add Comment</button>
                         <button className="newbtn">Cancel Changes</button>
                     </div>
-                    <div className='usersList'>
+                    <div>
                         <ul>
                             {users &&
                                 users.map((usr, index) => {
                                     return (
                                         <li key={usr.id} className='users'>
-                                            <h3>UserName: {usr.publicusername}</h3>
+                                            <h3>Userbame: {usr.publicusername}</h3>
                                             <h3>Tips and Hints: {usr.comment}</h3>
-                                            <button className="newbtn" onClick={() => {
-                                                updateUser(usr)
-                                            }}
-                                            >
-                                                Edit Comment
-                                            </button>
-
-                                            <button className="newbtn" onClick={() => {
-                                                deleteUser(usr.id)
-                                            }}
-                                            >
-                                                Delete Comment
-                                            </button>
+                                            <button className="newbtn" onClick={() => {updateUser(usr)}}>Edit Comment</button>
+                                            <button className="newbtn" onClick={() => {deleteUser(usr.id)}}>Delete Comment</button>
                                         </li>
                                     );
                                 })}

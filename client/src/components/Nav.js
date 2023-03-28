@@ -1,24 +1,25 @@
 import React, { useState, useEffect } from 'react';
-import Link1 from '../Link/Link';
+import Link1 from './Link';
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from "react-icons/ai";
 import { Link } from "react-router-dom";
-import { SidebarData } from "../../SidebarData";
+import { SidebarData } from "./SidebarData";
 import { IconContext } from "react-icons";
-import myImage from "../../lightmodecopy.png";
+import myImage from "../assets/lightmodecopy.png";
 
 
 const Nav = () => {
-  const [navClass, setNavClass] = useState('');
-  const [toggeledNav, settoggeledNav] = useState(false);
+  const [navClass, setNavClass] = useState(''); //state var to track class for nav menu
+  const [toggeledNav, settoggeledNav] = useState(false); //tracks toggle state
   const [sidebar, setSidebar] = useState(false);
   const showSidebar = () => setSidebar(!sidebar);
-
+  //function to toggle menu
   const toggleNav = () => {
     settoggeledNav(!toggeledNav);
   };
-
+  //tarcks current theme
   const [theme, setTheme] = useState('light');
+  //function to toggle theme
   const toggleTheme = () => {
     if (theme === 'light') {
       setTheme('dark');
@@ -27,10 +28,12 @@ const Nav = () => {
     }
   };
 
+  //updates body class to current theme
   useEffect(() => {
     document.body.className = theme;
   }, [theme]);
 
+  //styles the button
   const buttonStyle = {
     backgroundImage: `url(${myImage})`,
     width: '25px',
@@ -42,6 +45,7 @@ const Nav = () => {
     borderRadius: '12px', 
   }
 
+  //effect listen for scroll events and updates the nav menu class
   useEffect(() => {
     window.addEventListener('scroll', () => {
       let navClass = '';
@@ -51,7 +55,6 @@ const Nav = () => {
       setNavClass(navClass);
     });
   }, []);
-
 
   return (
     <nav className={`navbar navbar-expand-md bg-light ${navClass}`}>

@@ -2,15 +2,16 @@ import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth, db, logout } from "../firebase";
 import { query, collection, getDocs, where } from "firebase/firestore";
-import Section from '../HOC/Section';
+import Section from './Section';
 import bgImage from '../assets/infobg.jpg';
-import Link from './UI/Link/Link';
+import Link from './Link';
 import { BarChart, XAxis, YAxis, CartesianGrid, Tooltip, Legend, Bar } from 'recharts';
 import aboutImage from '../assets/alexa.jpg';
 import aboutImage2 from '../assets/rev.jpg';
 import { Card, Row, Col } from "react-bootstrap";
 
 const Info = () => {
+    //provides data for barchart for ways of saving
     const data = [
         { typeOfSaving: 'Switch off standby', savings: 78.23 },
         { typeOfSaving: 'draught proof gaps', savings: 198.32 },
@@ -24,7 +25,7 @@ const Info = () => {
         { typeOfSaving: 'Insulate internal/externals of house', savings: 495.33 },
         { typeOfSaving: 'Insulate hot water cylinder', savings: 103.42 }
     ];
-
+    //provides a link to an image to display in the cards along with some info on it
     const cardsData = [
         {
             title: "Close doors",
@@ -58,10 +59,9 @@ const Info = () => {
         },
     ];
 
-
+    // comments for code below in Home.js lines 12-36
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
-
     const fetchUserName = async () => {
         try {
             const q = query(collection(db, "userss"), where("uid", "==", user?.uid));
@@ -70,7 +70,6 @@ const Info = () => {
             setName(data.name);
         } catch (err) {
             console.error(err);
-            //alert("An error occurred while fetching user data");
         }
     };
 
