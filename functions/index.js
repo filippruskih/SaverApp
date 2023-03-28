@@ -1,15 +1,6 @@
 const functions = require("firebase-functions");
 const { initializeApp } = require('firebase-admin/app');
-import { getFirestore } from "firebase/firestore";
 
-
-// // Create and deploy your first functions
-// // https://firebase.google.com/docs/functions/get-started
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//   functions.logger.info("Hello logs!", {structuredData: true});
-//   response.send("Hello from Firebase!");
-// });
 
 const firebaseConfig = {
   apiKey: "AIzaSyD1qniOgt-Ut-KnD8oAGgfaeu8niTesQCI",
@@ -24,7 +15,3 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const usersRef = firebase.firestore().collection('users');
-// Initialize Realtime Database and get a reference to the service
-//const database = getDatabase(app);
