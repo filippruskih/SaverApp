@@ -1,7 +1,9 @@
 import React from 'react';
-import Section from '../HOC/Section';
+import Section from './Section';
 
 const mapMarker = () => {
+  //code for the map of the IT building in UoG
+  // place id generated via google map and with google api keys services
   return (
     <Section id='map'>
       <div>

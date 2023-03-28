@@ -7,15 +7,13 @@ import { Pie, PieChart, Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, 
 import { Button, Toast, Form } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { getMessaging, getToken, onMessage } from 'firebase/messaging';
-import notificationImage from '../assets/not.jpg';
 
 function CRUD() {
+  // Comments for code lines 12-101 made in Account.js
   const auth = getAuth();
   const [users, setUsers] = useState();
-  const userRef = ref(getDatabase(), 'users');
   const [userData, setUserData] = useState({});
   const [newID, setNewID] = useState("");
-  const [newName, setNewName] = useState("");
   const [newUserID, setNewUserID] = useState("");
   const [newArea, setNewArea] = useState("");
   const [newKwhUsed, setnewKwhUsed] = useState("");
@@ -101,6 +99,7 @@ function CRUD() {
       });
     }
   }, []);
+  //commented code note on line 12
 
 
   const [notification, setNotification] = useState({
@@ -111,10 +110,12 @@ function CRUD() {
   const [isTokenFound, setTokenFound] = useState(false);
   const [selectedTime, setSelectedTime] = useState('');
 
+  //updates selected time
   const handleTimeChange = (event) => {
     setSelectedTime(event.target.value);
   };
 
+  //function to check if future time has been selected or time in the past
   const onShowNotificationClicked = () => {
     if (selectedTime === '') {
       alert('Please select a time');
@@ -132,12 +133,16 @@ function CRUD() {
     }
   };
 
+  //updates SetShow to true
   const showNotification = () => {
     setShow(true);
   };
 
+  //initialises firebases getmessaging function
   const messaging = getMessaging();
 
+  //retrieves registration token from firebase web notification - generated token in
+  // project settings in firebase console
   const fetchToken = (setTokenFound) => {
     return getToken(messaging, { vapidKey: 'BANo4A4CUJOG8mymaoRCEbZC5ojZsC9tlKZSmUKC21nWXebfqC2G-z3HQa8s6fpjlzVWk95hBjDRm_bPCkmR3jg' }).then(
       (currentToken) => {
@@ -156,6 +161,7 @@ function CRUD() {
     });
   };
 
+  //returns a promise that resolves the payload of next message
   const onMessageListener = () =>
     new Promise((resolve) => {
       onMessage(messaging, (payload) => {
@@ -163,7 +169,15 @@ function CRUD() {
       });
     });
 
+  const [showTotalCost, setShowTotalCost] = useState(false);
 
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setShowTotalCost(true);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
 
   return (
     <div className='container pt-2 pb-5'>
@@ -211,6 +225,14 @@ function CRUD() {
           </ul>
         </div>
         <div>
+          {showTotalCost && (
+            <div>
+              <h3>Total Cost of Energy Used:</h3>
+              <h3>€{Object.values(users).reduce((totalCost, user) => totalCost + user.kwhUsed * 0.23, 0).toFixed(2)}</h3>
+            </div>
+          )}
+        </div>
+        <div>
           {users && (
             <>
               <div style={{ display: 'inline-block', width: '50%', margin: '0 auto' }}>
@@ -252,9 +274,9 @@ function CRUD() {
           </Toast.Header>
           <Toast.Body>{notification.body}</Toast.Body>
         </Toast>
-        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
           <h5>Please enter time you want to set notification for.</h5>
-          <input style={{ marginBottom:'10px'}} type="datetime-local" value={selectedTime} onChange={handleTimeChange} />
+          <input style={{ marginBottom: '10px' }} type="datetime-local" value={selectedTime} onChange={handleTimeChange} />
           <Button onClick={() => onShowNotificationClicked()}>Set Notification</Button>
         </div>
       </div>

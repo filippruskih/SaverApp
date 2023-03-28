@@ -2,8 +2,7 @@ import React from "react";
 import '../App.css';
 import { useState, useEffect } from "react";
 import { getDatabase, ref, push, onValue, update, remove, get } from "firebase/database";
-import { getUserData } from "../firebase";
-import { getAuth, useAuth } from "firebase/auth";
+import { getAuth } from "firebase/auth";
 import { Pie, PieChart, Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, Bar, } from 'recharts';
 
 

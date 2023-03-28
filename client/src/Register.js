@@ -8,6 +8,7 @@ import {
 } from "./firebase";
 import "./App.css";
 
+//once user registers, redirects them to the home page
 function Register() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

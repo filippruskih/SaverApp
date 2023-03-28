@@ -6,6 +6,7 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 import '../App.css';
 
 function Logout() {
+    //code commented in Home.js lines 12-36
     const [user, loading, error] = useAuthState(auth);
     const [name, setName] = useState("");
     const navigate = useNavigate();

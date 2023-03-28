@@ -4,19 +4,14 @@ import { useState, useEffect } from "react";
 import { getDatabase, ref, push, onValue, update, remove, get } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import bgImage from '../assets/myaccount.jpg';
-import Link from './UI/Link/Link';
 
 
 function Account() {
-    const auth = getAuth();
-    const [users, setUsers] = useState();
-    const userRef = ref(getDatabase(), 'accountdetails');
+    const auth = getAuth(); // imports firebase auth package and initialises the service
+    const [users, setUsers] = useState(); // 
+    const userRef = ref(getDatabase(), 'accountdetails'); // creates a reference for FB RT-DB(Firebase Real Time Database)
     const [userData, setUserData] = useState({});
-    const [newUserID, setNewUserID] = useState("");
-    const [newArea, setNewArea] = useState("");
-    const [newKwhUsed, setnewKwhUsed] = useState("");
-
-    const [newID, setNewID] = useState("");
+    const [newID, setNewID] = useState(""); //sets a variable and corresponding setter method
     const [newName, setNewName] = useState("");
     const [newSurname, setNewSurname] = useState("");
     const [newAddress, setNewAddress] = useState("");
@@ -24,6 +19,7 @@ function Account() {
     const [newEmail, setNewEmail] = useState("");
     const [newPhoneNum, setNewPhoneNum] = useState("");
 
+    //retrieves users data from the FB RTDB
     const getUsers = async () => {
         const currentUser = auth.currentUser;
         if (currentUser) {
@@ -43,6 +39,7 @@ function Account() {
         }
     };
 
+    // method to create new user or updates an existing one
     const createUser = async () => {
         const currentUser = auth.currentUser;
         if (currentUser) {
@@ -69,7 +66,6 @@ function Account() {
                 };
                 await update(ref(getDatabase(), `accountdetails/${uid}`), updates);
             }
-
             // Retrieve the updated data from the database
             const snapshot = await get(ref(getDatabase(), `accountdetails/${uid}`));
             const data = snapshot.val();
@@ -87,6 +83,7 @@ function Account() {
         setNewPhoneNum("");
     };
 
+    //user update function
     const updateUser = (usr) => {
         setNewID(usr.id);
         setNewName(usr.name);
@@ -97,6 +94,7 @@ function Account() {
         setNewPhoneNum(usr.phone);
     };
 
+    //user delete function
     const deleteUser = async (userID) => {
         const currentUser = auth.currentUser;
         const userUid = currentUser.uid;
@@ -104,6 +102,8 @@ function Account() {
         setTimeout(getUsers, 1000);
     };
 
+    // this hook runs once the component mounts and retrieves user data for the currently logged in user
+    // sets a timeout for refreshing list on screen
     useEffect(() => {
         // get the currently logged in user's ID
         const userId = auth.currentUser?.uid;

@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { auth, sendPasswordReset } from "./firebase";
 import "./App.css";
 
+//password reset email for the user already in the database
 function Reset() {
     const [email, setEmail] = useState("");
     const [user, loading, error] = useAuthState(auth);

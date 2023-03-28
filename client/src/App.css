@@ -115,7 +115,7 @@ body {
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: #556d86;
+  background-color: #52565b;
   opacity: 0.8;
 }
 
@@ -131,8 +131,6 @@ body {
 
 #facts .facts-container .facts-title {
 }
-
-
 
 footer .footer-title {
   position: relative;
@@ -441,6 +439,10 @@ footer .quick-links a:hover {
   padding-left: 80%;
   padding-bottom: 1.2%;
   border-radius: 12px;
+}
+
+.factstext{
+  color: #000;
 }
 
 .lightbtnn:hover {

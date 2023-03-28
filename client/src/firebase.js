@@ -20,6 +20,7 @@ import {
 import { getMessaging, getToken, onMessage } from "firebase/messaging";
 
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+//initialises my firebase app configurations
 const firebaseConfig = {
     apiKey: "AIzaSyD1qniOgt-Ut-KnD8oAGgfaeu8niTesQCI",
     authDomain: "saverhomeenergysavingapp.firebaseapp.com",
@@ -37,6 +38,7 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 const database = getDatabase(app)
 const googleProvider = new GoogleAuthProvider();
+//function for signing in with google option
 const signInWithGoogle = async () => {
     try {
         const res = await signInWithPopup(auth, googleProvider);
@@ -57,6 +59,7 @@ const signInWithGoogle = async () => {
     }
 };
 
+//takes in a user email and password and checks with the database to see if user exists and logs them in
 const logInWithEmailAndPassword = async (email, password) => {
     try {
       const { user } = await signInWithEmailAndPassword(auth, email, password);
@@ -71,6 +74,7 @@ const logInWithEmailAndPassword = async (email, password) => {
     }
   };
 
+//takes in a user email and password and checks with the database to see if user exists and registers them 
 const registerWithEmailAndPassword = async (name, email, password) => {
     try {
         const res = await createUserWithEmailAndPassword(auth, email, password);
@@ -87,6 +91,7 @@ const registerWithEmailAndPassword = async (name, email, password) => {
     }
 };
 
+//function to send a reset email password to user that is logged in email account
 const sendPasswordReset = async (email) => {
     try {
         await sendPasswordResetEmail(auth, email);
@@ -97,10 +102,12 @@ const sendPasswordReset = async (email) => {
     }
 };
 
+//logout function
 const logout = () => {
     signOut(auth);
 };
 
+//gets user ID from the users database 
 function getUserData(userId) {
     const dbRef = getDatabase().ref("users/" + userId);
     return dbRef.once("value").then((snapshot) => {
@@ -119,16 +126,14 @@ function getUserData(userId) {
       if (currentToken) {
         console.log('current token for client: ', currentToken);
         setTokenFound(true);
-        // Track the token -> client mapping, by sending to backend server
-        // show on the UI that permission is secured
+        // Tracks the token -> client mapping, by sending to backend server
       } else {
         console.log('No registration token available. Request permission to generate one.');
         setTokenFound(false);
-        // shows on the UI that permission is required 
       }
     }).catch((err) => {
       console.log('An error occurred while retrieving token. ', err);
-      // catch error while creating client token
+      // catches any errors while creating the clients token
     });
   }
   
@@ -138,7 +143,6 @@ function getUserData(userId) {
         resolve(payload);
       });
   });
-  
   
 export {
     auth,

@@ -1,5 +1,5 @@
 import React from 'react';
-import Section from '../HOC/Section';
+import Section from './Section';
 import blogImage1 from '../assets/blog1.jpg';
 import blogImage2 from '../assets/blog2.jpg';
 import blogImage3 from '../assets/blog3.jpg';
