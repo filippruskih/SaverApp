@@ -126,7 +126,6 @@ function Team() {
                         ></input>
                         <br />
                         <button className="newbtn" onClick={createUser}>Add Comment</button>
-                        <button className="newbtn">Cancel Changes</button>
                     </div>
                     <div>
                         <ul>
@@ -136,8 +135,6 @@ function Team() {
                                         <li key={usr.id} className='users'>
                                             <h3>Userbame: {usr.publicusername}</h3>
                                             <h3>Tips and Hints: {usr.comment}</h3>
-                                            <button className="newbtn" onClick={() => {updateUser(usr)}}>Edit Comment</button>
-                                            <button className="newbtn" onClick={() => {deleteUser(usr.id)}}>Delete Comment</button>
                                         </li>
                                     );
                                 })}
