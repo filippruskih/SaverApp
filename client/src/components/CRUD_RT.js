@@ -4,7 +4,10 @@ import { useState, useEffect } from "react";
 import { getDatabase, ref, push, onValue, update, remove, get } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { Pie, PieChart, Tooltip, BarChart, XAxis, YAxis, Legend, CartesianGrid, Bar, } from 'recharts';
-
+import { Button, Toast, Form } from 'react-bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { getMessaging, getToken, onMessage } from 'firebase/messaging';
+import notificationImage from '../assets/not.jpg';
 
 function CRUD() {
   const auth = getAuth();
@@ -64,7 +67,7 @@ function CRUD() {
     }
 
     setTimeout(getUsers, 1000);
-    
+
     setNewID("");
     setNewArea("");
     setnewKwhUsed("");
@@ -99,12 +102,75 @@ function CRUD() {
     }
   }, []);
 
+
+  const [notification, setNotification] = useState({
+    title: 'Reminder',
+    body: 'Please remember to save energy by turning off lights, closing doors and windows'
+  });
+  const [show, setShow] = useState(false);
+  const [isTokenFound, setTokenFound] = useState(false);
+  const [selectedTime, setSelectedTime] = useState('');
+
+  const handleTimeChange = (event) => {
+    setSelectedTime(event.target.value);
+  };
+
+  const onShowNotificationClicked = () => {
+    if (selectedTime === '') {
+      alert('Please select a time');
+    } else {
+      const currentDateTime = new Date().getTime();
+      const selectedDateTime = new Date(selectedTime).getTime();
+      const timeDiff = selectedDateTime - currentDateTime;
+      if (timeDiff > 0) {
+        setTimeout(() => {
+          showNotification();
+        }, timeDiff);
+      } else {
+        alert('Please select a future time');
+      }
+    }
+  };
+
+  const showNotification = () => {
+    setShow(true);
+  };
+
+  const messaging = getMessaging();
+
+  const fetchToken = (setTokenFound) => {
+    return getToken(messaging, { vapidKey: 'BANo4A4CUJOG8mymaoRCEbZC5ojZsC9tlKZSmUKC21nWXebfqC2G-z3HQa8s6fpjlzVWk95hBjDRm_bPCkmR3jg' }).then(
+      (currentToken) => {
+        if (currentToken) {
+          console.log('current token for client: ', currentToken);
+          setTokenFound(true);
+        } else {
+          console.log(
+            'No registration token available. Request permission to generate one.'
+          );
+          setTokenFound(false);
+        }
+      }
+    ).catch((err) => {
+      console.log('An error occurred while retrieving token. ', err);
+    });
+  };
+
+  const onMessageListener = () =>
+    new Promise((resolve) => {
+      onMessage(messaging, (payload) => {
+        resolve(payload);
+      });
+    });
+
+
+
   return (
     <div className='container pt-2 pb-5'>
-        <div className='section-header pt-5 pb-5 text-center'>
-          <h3 className='section-title'>
-            <span>Energy </span>Consumption
-          </h3>
+      <div className='section-header pt-5 pb-5 text-center'>
+        <h3 className='section-title'>
+          <span>Energy </span>Consumption
+        </h3>
         <div className="createUser">
           <input
             placeholder="Enter Area"
@@ -136,7 +202,7 @@ function CRUD() {
                   <ul className="users" key={key}>
                     <h3>Area: {usr.area}</h3>
                     <h3>kWh Used: {usr.kwhUsed}</h3>
-                    <h3>Cost of energy used: €{(usr.kwhUsed*0.23).toFixed(2)}</h3>
+                    <h3>Cost of energy used: €{(usr.kwhUsed * 0.23).toFixed(2)}</h3>
                     <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
                     <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
                   </ul>
@@ -165,6 +231,31 @@ function CRUD() {
               </div>
             </>
           )}
+        </div>
+      </div>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <Toast onClose={() => setShow(false)} show={show} delay={10000} autohide animation style={{
+          position: 'fixed',
+          top: 20,
+          right: 20,
+          minWidth: 200
+        }}>
+          <Toast.Header>
+            <img
+              src="https://image.shutterstock.com/image-vector/notification-icon-vector-material-design-260nw-759841507.jpg"
+              className="rounded mr-2"
+              alt=""
+              style={{ width: '20px', height: '20px' }}
+            />
+            <strong className="mr-auto">{notification.title}</strong>
+            <small>Just now</small>
+          </Toast.Header>
+          <Toast.Body>{notification.body}</Toast.Body>
+        </Toast>
+        <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
+          <h5>Please enter time you want to set notification for.</h5>
+          <input style={{ marginBottom:'10px'}} type="datetime-local" value={selectedTime} onChange={handleTimeChange} />
+          <Button onClick={() => onShowNotificationClicked()}>Set Notification</Button>
         </div>
       </div>
     </div>
