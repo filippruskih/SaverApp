@@ -216,7 +216,7 @@ function CRUD() {
                   <ul className="users" key={key}>
                     <h3>Area: {usr.area}</h3>
                     <h3>kWh Used: {usr.kwhUsed}</h3>
-                    <h3>Cost of energy used: €{(usr.kwhUsed * 0.23).toFixed(2)}</h3>
+                    <h3>Cost of energy used: €{(usr.kwhUsed * 0.4327).toFixed(2)}</h3>
                     <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
                     <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
                   </ul>
@@ -228,7 +228,7 @@ function CRUD() {
           {showTotalCost && (
             <div>
               <h3>Total Cost of Energy Used:</h3>
-              <h3>€{Object.values(users).reduce((totalCost, user) => totalCost + user.kwhUsed * 0.23, 0).toFixed(2)}</h3>
+              <h3>€{Object.values(users).reduce((totalCost, user) => totalCost + user.kwhUsed * 0.4327, 0).toFixed(2)}</h3>
             </div>
           )}
         </div>
