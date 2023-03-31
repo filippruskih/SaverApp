@@ -42,11 +42,17 @@ function CRUD() {
     if (currentUser) {
       const uid = currentUser.uid;
       if (newID.length < 1) {
-        await push(ref(getDatabase(), `users/${uid}`), {
-          area: newArea,
-          userID: Number(newUserID),
-          kwhUsed: Number(newKwhUsed),
-        });
+        if(newKwhUsed <= 0)
+        {
+          alert('Please enter a positive number');
+        }
+        else{
+          await push(ref(getDatabase(), `users/${uid}`), {
+            area: newArea,
+            userID: Number(newUserID),
+            kwhUsed: Number(newKwhUsed),
+          });
+        }
       } else {
         // Update the user
         const updates = {};
@@ -76,7 +82,7 @@ function CRUD() {
     setNewID(usr.id);
     setNewArea(usr.area);
     setnewKwhUsed(usr.kwhUsed);
-    setNewUserID(usr.userID);
+    //setNewUserID(usr.userID);
   };
 
   const deleteUser = async (userID) => {
@@ -100,7 +106,6 @@ function CRUD() {
     }
   }, []);
   //commented code note on line 12
-
 
   const [notification, setNotification] = useState({
     title: 'Reminder',
