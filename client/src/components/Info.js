@@ -25,6 +25,14 @@ const Info = () => {
         { typeOfSaving: 'Insulate internal/externals of house', savings: 495.33 },
         { typeOfSaving: 'Insulate hot water cylinder', savings: 103.42 }
     ];
+
+    const sqData = [
+        { BER: 'A and B rating', consump: 87 },
+        { BER: 'C rating', consump: 100 },
+        { BER: 'D rating', consump: 112 },
+        { BER: 'E rating', consump: 118 },
+        { BER: 'F and Grating', consump: 120 },
+    ];
     //provides a link to an image to display in the cards along with some info on it
     const cardsData = [
         {
@@ -107,31 +115,35 @@ const Info = () => {
                 <div className='container pt-2 pb-5'>
                     <div className='row'>
                         <div className='section-header pt-5 pb-5 text-center'>
-                            <h3 className='section-title'>
-                                <span>Bar Chart </span>On Annual Savings
-                            </h3>
-                            <div style={{ display: 'flex', justifyContent: 'center' }}>
-                                <BarChart width={800} height={700} data={data} layout="vertical" margin={{ top: 10, right: 10, bottom: 50, left: 10 }}>
-                                    <XAxis type="number" label={{ value: "Savings in € per annum", position: "top" }} />
-                                    <YAxis dataKey="typeOfSaving" type="category" angle={-15} fontSize={8} />
-                                    <CartesianGrid strokeDasharray="3 3" />
-                                    <Tooltip />
-                                    <Legend />
-                                    <Bar dataKey="savings" fill="#8884d8" />
-                                </BarChart>
+                            <div>
+                                <h3 className='section-title'>
+                                    <span>Bar Chart </span>On Annual Savings
+                                </h3>
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <BarChart width={800} height={700} data={data} layout="vertical" margin={{ top: 10, right: 10, bottom: 50, left: 10 }}>
+                                        <XAxis type="number" label={{ value: "Savings in € per annum", position: "top" }} />
+                                        <YAxis dataKey="typeOfSaving" type="category" angle={-15} fontSize={8} />
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="savings" fill="#8884d8" />
+                                    </BarChart>
+                                </div>
                             </div>
-                            <h3 className='section-title'>
-                                <span>More </span>Information
-                            </h3>
-                            <p className='aboutsection'>
-                                By following our expert advice and recommendations, you can easily and efficiently reduce your energy consumption, diminish your expenses and contribute towards a greener future by decreasing your carbon footprint. Regardless of whether you own a property, are a tenant in either private or social accommodation, are pursuing your studies or reside with your family, you have the potential to implement a number of practical and simple steps to curb your energy consumption.
-                            </p>
-                            <p>
-                                As inhabitants of our homes, it is our responsibility to actively take charge of our energy usage, and the good news is that it doesn't have to be a daunting task. Our comprehensive set of suggestions, ranging from minor tweaks to significant modifications, can be implemented with ease and result in notable savings of up to €566 per annum* on your bills.
-                            </p>
-                            <p>
-                                So, why not explore our recommendations and become a part of the solution for a more sustainable future while simultaneously experiencing the benefits of a reduced energy bill? Start today, and take a step towards a greener and more affordable lifestyle.
-                            </p>
+                            <div>
+                                <h3 className='section-title'>
+                                    <span>More </span>Information
+                                </h3>
+                                <p className='aboutsection'>
+                                    By following our expert advice and recommendations, you can easily and efficiently reduce your energy consumption, diminish your expenses and contribute towards a greener future by decreasing your carbon footprint. Regardless of whether you own a property, are a tenant in either private or social accommodation, are pursuing your studies or reside with your family, you have the potential to implement a number of practical and simple steps to curb your energy consumption.
+                                </p>
+                                <p>
+                                    As inhabitants of our homes, it is our responsibility to actively take charge of our energy usage, and the good news is that it doesn't have to be a daunting task. Our comprehensive set of suggestions, ranging from minor tweaks to significant modifications, can be implemented with ease and result in notable savings of up to €566 per annum* on your bills.
+                                </p>
+                                <p>
+                                    So, why not explore our recommendations and become a part of the solution for a more sustainable future while simultaneously experiencing the benefits of a reduced energy bill? Start today, and take a step towards a greener and more affordable lifestyle.
+                                </p>
+                            </div>
                             <div className='container pt-2 pb-5'>
                                 <div className='section-header pt-5 pb-5 text-center'>
                                     <h3 className='section-title'>
@@ -229,6 +241,23 @@ const Info = () => {
                                     </Row>
                                 </div>
                             </div>
+                            <div>
+                                <h3 className='section-title'>
+                                    <span>Bar Chart on BER</span> Consumption per sq. metre
+                                </h3>
+                                <div style={{ display: 'flex', justifyContent: 'center' }}>
+                                    <BarChart width={800} height={700} data={sqData}>
+                                        <CartesianGrid strokeDasharray="3 3" />
+                                        <XAxis dataKey="BER" />
+                                        <YAxis />
+                                        <Tooltip />
+                                        <Legend />
+                                        <Bar dataKey="consump" fill="#1184d8" />
+                                    </BarChart>
+                                </div>
+                            </div>
+                            <br />
+                            <br />
                             <div>
                                 <h3 className='section-title'>
                                     <span>Reference </span>Section
