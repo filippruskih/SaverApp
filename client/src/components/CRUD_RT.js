@@ -17,6 +17,7 @@ function CRUD() {
   const [newUserID, setNewUserID] = useState("");
   const [newArea, setNewArea] = useState("");
   const [newKwhUsed, setnewKwhUsed] = useState("");
+  const [selectedDay, setSelectedDay] = useState("");
 
   const getUsers = async () => {
     const currentUser = auth.currentUser;
@@ -42,15 +43,16 @@ function CRUD() {
     if (currentUser) {
       const uid = currentUser.uid;
       if (newID.length < 1) {
-        if(newKwhUsed <= 0)
-        {
-          alert('Please enter a positive number');
-        }
-        else{
+        if (newKwhUsed <= 0) {
+          alert("Please enter a positive number");
+        } else if (selectedDay === "") {
+          alert("Please select a day");
+        } else {
           await push(ref(getDatabase(), `users/${uid}`), {
             area: newArea,
             userID: Number(newUserID),
             kwhUsed: Number(newKwhUsed),
+            day: selectedDay, // Save the selected day
           });
         }
       } else {
@@ -60,6 +62,7 @@ function CRUD() {
           area: newArea,
           userID: newUserID,
           kwhUsed: newKwhUsed,
+          day: selectedDay, // Save the selected day
         };
         await update(ref(getDatabase(), `users/${uid}`), updates);
       }
@@ -76,7 +79,9 @@ function CRUD() {
     setNewArea("");
     setnewKwhUsed("");
     setNewUserID("");
+    setSelectedDay("");
   };
+
 
   const updateUser = (usr) => {
     setNewID(usr.id);
@@ -184,6 +189,32 @@ function CRUD() {
     return () => clearTimeout(timer);
   }, []);
 
+  const renderPieChartForDay = (day) => {
+    const dataForDay = users.filter((user) => user.day === day);
+
+    if (dataForDay.length === 0) { // Check if there is no data for the day
+      return null; // Do not render anything
+    }
+
+    return (
+      <div style={{ display: "inline-block", width: "30%", margin: "0 auto" }}>
+        <h3>{day}</h3>
+        <PieChart width={400} height={400}>
+          <Pie
+            data={dataForDay}
+            dataKey="kwhUsed"
+            nameKey="area"
+            cx="50%"
+            cy="50%"
+            fill="#248eff"
+            label={({ name, kwhUsed }) => `${name}: ${kwhUsed}`}
+          />
+          <Tooltip />
+        </PieChart>
+      </div>
+    );
+  };
+
   return (
     <div className='container pt-2 pb-5'>
       <div className='section-header pt-5 pb-5 text-center'>
@@ -208,9 +239,25 @@ function CRUD() {
               setnewKwhUsed(event.target.value);
             }}
           />
+          <select
+            value={selectedDay}
+            className="input2"
+            onChange={(event) => {
+              setSelectedDay(event.target.value);
+            }}
+          >
+            <option value="">Select a day</option>
+            <option value="Monday">Monday</option>
+            <option value="Tuesday">Tuesday</option>
+            <option value="Wednesday">Wednesday</option>
+            <option value="Thursday">Thursday</option>
+            <option value="Friday">Friday</option>
+            <option value="Saturday">Saturday</option>
+            <option value="Sunday">Sunday</option>
+          </select>
+          <br />
           <br />
           <button className="newbtn" onClick={createUser}>Enter new data</button>
-          <button className="newbtn">Cancel</button>
         </div>
         <div>
           <ul>
@@ -221,6 +268,7 @@ function CRUD() {
                   <ul className="users" key={key}>
                     <h3>Area: {usr.area}</h3>
                     <h3>kWh Used: {usr.kwhUsed}</h3>
+                    <h3>Day of Week: {usr.day}</h3>
                     <h3>Cost of energy used: €{(usr.kwhUsed * 0.4327).toFixed(2)}</h3>
                     <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
                     <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
@@ -238,15 +286,38 @@ function CRUD() {
           )}
         </div>
         <div>
+          <br />
+          <h3 className='section-title'>
+            <span>Daily </span>Pie Charts
+          </h3>
           {users && (
             <>
-              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto' }}>
+              <div style={{ display: 'inline-block', width: '100%', margin: '0 auto' }}>
+                {users && (
+                  <>
+                    {renderPieChartForDay("Monday")}
+                    {renderPieChartForDay("Tuesday")}
+                    {renderPieChartForDay("Wednesday")}
+                    {renderPieChartForDay("Thursday")}
+                    {renderPieChartForDay("Friday")}
+                    {renderPieChartForDay("Saturday")}
+                    {renderPieChartForDay("Sunday")}
+                  </>
+                )}
+              </div>
+
+              <h2> </h2>
+              <h3 className='section-title'>
+                <span>Total Energy </span>Consumed This Week
+              </h3>
+              <div style={{ display: 'inline-block', width: '60%', margin: '0 auto' }}>
                 <PieChart width={900} height={400}>
-                  <Pie data={users} dataKey="kwhUsed" nameKey="area" cx="50%" cy="50%" fill="#074f86" label />
+                  <Pie data={users} dataKey="kwhUsed" nameKey="area" cx="50%" cy="50%" fill="#074f86" label={({ day, name, kwhUsed }) => `${day}: ${name}: ${kwhUsed}`} />
                   <Tooltip />
                 </PieChart>
               </div>
-              <div style={{ display: 'inline-block', width: '50%', margin: '0 auto' }}>
+
+              <div style={{ display: 'inline-block', width: '40%', margin: '0 auto' }}>
                 <BarChart width={500} height={300} data={users}>
                   <CartesianGrid strokeDasharray="3 3" />
                   <XAxis dataKey="area" />
