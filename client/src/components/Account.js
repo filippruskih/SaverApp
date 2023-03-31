@@ -18,6 +18,8 @@ function Account() {
     const [newDOB, setNewDOB] = useState("");
     const [newEmail, setNewEmail] = useState("");
     const [newPhoneNum, setNewPhoneNum] = useState("");
+    const [newFamSize, setNewFamSize] = useState("");
+    const [showTotalEnergy, setShowTotalEnergy] = useState(false);
 
     //retrieves users data from the FB RTDB
     const getUsers = async () => {
@@ -63,6 +65,7 @@ function Account() {
                     dob: newDOB,
                     email: newEmail,
                     phone: Number(newPhoneNum),
+                    famSize: Number(newFamSize),
                 };
                 await update(ref(getDatabase(), `accountdetails/${uid}`), updates);
             }
@@ -81,6 +84,7 @@ function Account() {
         setNewDOB("");
         setNewEmail("");
         setNewPhoneNum("");
+        setNewFamSize("");
     };
 
     //user update function
@@ -92,6 +96,7 @@ function Account() {
         setNewDOB(usr.dob);
         setNewEmail(usr.email);
         setNewPhoneNum(usr.phone);
+        setNewFamSize(usr.famSize);
     };
 
     //user delete function
@@ -118,6 +123,14 @@ function Account() {
         }
     }, []);
 
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setShowTotalEnergy(true);
+        }, 3000);
+
+        return () => clearTimeout(timer);
+    }, []);
+
     return (
         <div className="App">
             <div className='home-content p-5' style={{
@@ -135,83 +148,131 @@ function Account() {
                     <span>My </span>Account
                 </h3>
             </div>
-            <h5>Please enter your details to update</h5>
-                <div className="createAccount">
-                    <input
-                        placeholder='Enter name'
-                        value={newName}
-                        className="input1"
-                        onChange={(event) => {
-                            setNewName(event.target.value)
-                        }}
-                    ></input><br />
-                    <input
-                        placeholder='Enter Surname'
-                        value={newSurname}
-                        className="input1"
-                        onChange={(event) => {
-                            setNewSurname(event.target.value)
-                        }}
-                    ></input><br />
-                    <input
-                        placeholder='Enter Address'
-                        value={newAddress}
-                        className="input1"
-                        onChange={(event) => {
-                            setNewAddress(event.target.value)
-                        }}
-                    ></input><br />
-                    <input
-                        placeholder='Enter DOB'
-                        value={newDOB}
-                        className="input1"
-                        onChange={(event) => {
-                            setNewDOB(event.target.value)
-                        }}
-                    ></input><br />
-                    <input
-                        placeholder='Enter Email'
-                        value={newEmail}
-                        className="input1"
-                        onChange={(event) => {
-                            setNewEmail(event.target.value)
-                        }}
-                    ></input><br />
-                    <input
-                        placeholder='Enter Phone number'
-                        value={newPhoneNum}
-                        type="number"
-                        className="input1"
-                        onChange={(event) => {
-                            setNewPhoneNum(event.target.value)
-                        }}
-                    ></input>
-                    <br />
-                    <button className="newbtn" onClick={createUser}>Set Account Details</button>
-                    <button className="newbtn">Cancel</button>
-                </div>
-                <div className="createAccount">
-                    <ul>
-                        {users &&
-                            Object.keys(users).map((key) => {
-                                const usr = users[key];
-                                return (
-                                    <ul className="users1" key={key}>
-                                        <h3>Name: {usr.name}</h3>
-                                        <h3>Surname: {usr.surname}</h3>
-                                        <h3>Address: {usr.address}</h3>
-                                        <h3>DOB: {usr.dob}</h3>
-                                        <h3>Email: {usr.email}</h3>
-                                        <h3>Phone number: {usr.phone}</h3>
+            <div className="user-list">
+                <ul>
+                    {users &&
+                        Object.keys(users).map((key) => {
+                            const usr = users[key];
+                            return (
+                                <ul className="input-container" key={key}>
+                                    <div className="basic-info">
+                                        <h4>Basic Info</h4>
+                                        <h5>Name: {usr.name}</h5>
+                                        <h5>Surname: {usr.surname}</h5>
+                                        <h5>DOB: {usr.dob}</h5>
+                                        <h5>Family Size: {usr.famSize}</h5>
                                         <br />
-                                        <h3>User ID: {usr.userID}</h3>
-                                        <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
-                                        <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
-                                    </ul>
-                                );
-                            })}
-                    </ul>
+                                    </div>
+                                    <div className="contact-info">
+                                        <h4>Contact Info</h4>
+                                        <h5>Email: {usr.email}</h5>
+                                        <h5>Phone number: {usr.phone}</h5>
+                                        <br />
+                                    </div>
+
+                                    <div className="address-info">
+                                        <h4>Address</h4>
+                                        <h5>Address: {usr.address}</h5>
+
+                                    </div>
+                                    <br />
+                                    <h5>User ID: {usr.userID}</h5>
+                                    <button className="newbtn" onClick={() => { updateUser(usr); }}>Edit Data</button>
+                                    <button className="newbtn" onClick={() => { deleteUser(usr.userID); }}>Delete Data</button>
+                                </ul>
+                            );
+                        })}
+                </ul>
+            </div><br /><br />
+            <div>
+                <h5>Please enter your details to update</h5>
+                <div className="input-container">
+                    <div className="basic-info">
+                        <h4>Basic Info</h4>
+                        <input
+                            placeholder='Enter name'
+                            value={newName}
+                            className="input1"
+                            onChange={(event) => {
+                                setNewName(event.target.value)
+                            }}
+                        /><br />
+                        <input
+                            placeholder='Enter Surname'
+                            value={newSurname}
+                            className="input1"
+                            onChange={(event) => {
+                                setNewSurname(event.target.value)
+                            }}
+                        /><br />
+                        <input
+                            placeholder='Enter DOB'
+                            value={newDOB}
+                            className="input1"
+                            onChange={(event) => {
+                                setNewDOB(event.target.value)
+                            }}
+                        /><br />
+                        <input
+                            placeholder='Family Size'
+                            value={newFamSize}
+                            type="number"
+                            className="input1"
+                            onChange={(event) => {
+                                setNewFamSize(event.target.value)
+                            }}
+                        />
+                    </div>
+                    <div className="contact-info">
+                        <h4>Contact Info</h4>
+                        <input
+                            placeholder='Enter Email'
+                            value={newEmail}
+                            className="input1"
+                            onChange={(event) => {
+                                setNewEmail(event.target.value)
+                            }}
+                        /><br />
+                        <input
+                            placeholder='Enter Phone number'
+                            value={newPhoneNum}
+                            type="number"
+                            className="input1"
+                            onChange={(event) => {
+                                setNewPhoneNum(event.target.value)
+                            }}
+                        />
+                    </div>
+                    <div className="address-info">
+                        <h4>Address</h4>
+                        <input
+                            placeholder='Enter Address'
+                            value={newAddress}
+                            className="input1"
+                            onChange={(event) => {
+                                setNewAddress(event.target.value)
+                            }}
+                        />
+                    </div>
                 </div>
+                <br />
+                <button className="newbtn" onClick={createUser}>Set Account Details</button>
+            </div>
+
+            <div className='container pt-2 pb-5'>
+                <div className='row'>
+                    <div className='section-header pt-5 pb-5 text-center'>
+                        <h3 className='section-title'>
+                            <span>More </span>Information
+                        </h3>
+                        <p className='aboutsection'>
+                            On average, a person uses anywhere between 8-10 kWh of energy per day, which means that based on your family size, your daily consumption should be <b>€{(users && Object.values(users).reduce((totalEnergy, user) => totalEnergy + user.famSize * 9, 0).toFixed(2))}</b> and a yearly consumption of <b>€{(users && Object.values(users).reduce((totalEnergy, user) => totalEnergy + user.famSize * 9 * 365, 0).toFixed(2))}</b>. 
+                            
+                            By implementing measures to save on your energy consumption by insulating your house, using saver and other smart technology to ensure you are saving energy you can reduce these figures to <b>€{(users && Object.values(users).reduce((totalEnergy, user) => totalEnergy + user.famSize * 9 * 0.75, 0).toFixed(2))}</b> and a yearly consumption of <b>€{(users && Object.values(users).reduce((totalEnergy, user) => totalEnergy + user.famSize * 9 * 365 * 0.75, 0).toFixed(2))}</b>
+                        </p>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }

@@ -571,6 +571,30 @@ span {
   margin-bottom: 10px;
 }
 
+.input-container {
+  border: 2px solid #000; /* Change the border color as needed */
+  padding: 20px;
+  margin-bottom: 20px;
+  display: inline-block;
+  width: calc(33.33% - 40px); /* This will make three boxes in a row, adjust as needed */
+  box-sizing: border-box;
+  background-color: #a4cdf7;
+  border-radius: 10px;
+}
+
+.account-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+}
+
+.input-fields-container {
+  width: 48%; /* Adjust width as needed */
+  margin-bottom: 20px;
+}
+
+
 .users1 h3 {
   color: #000;
   margin: 0;
