@@ -316,17 +316,18 @@ function CRUD() {
                   <Tooltip />
                 </PieChart>
               </div>
-
-              <div style={{ display: 'inline-block', width: '40%', margin: '0 auto' }}>
-                <BarChart width={500} height={300} data={users}>
-                  <CartesianGrid strokeDasharray="3 3" />
-                  <XAxis dataKey="area" />
-                  <YAxis />
-                  <Legend />
-                  <Bar dataKey="kwhUsed" fill="#8884d8" />
-                  <Tooltip />
-                </BarChart>
-              </div>
+              {users.length > 0 && (
+                <div style={{ display: 'inline-block', width: '40%', margin: '0 auto' }}>
+                  <BarChart width={500} height={300} data={users}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey="area" />
+                    <YAxis />
+                    <Legend />
+                    <Bar dataKey="kwhUsed" fill="#8884d8" />
+                    <Tooltip />
+                  </BarChart>
+                </div>
+              )}
             </>
           )}
         </div>
