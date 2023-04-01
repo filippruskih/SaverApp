@@ -240,6 +240,7 @@ const Info = () => {
                                         ))}
                                     </Row>
                                 </div>
+                                <br />
                             </div>
                             <div>
                                 <h3 className='section-title'>
@@ -258,6 +259,25 @@ const Info = () => {
                             </div>
                             <br />
                             <br />
+                            <div>
+                                <h3 className='section-title'>
+                                    <span>Insulation </span>Tips
+                                </h3>
+                                <h6 className='aboutsection'>
+                                Insulating your home is a crucial step in improving your Building Energy Rating (BER) and offers numerous benefits. Proper insulation not only enhances the energy efficiency of your property but also provides a more comfortable living environment by maintaining consistent indoor temperatures throughout the year. By reducing heat loss in winter and heat gain in summer, you can significantly lower your energy consumption, leading to reduced utility bills and a smaller carbon footprint. Furthermore, a well-insulated home contributes to better indoor air quality and reduces the risk of mold and dampness. As a result, investing in insulation not only helps you save money and reduce your environmental impact, but also contributes to a healthier and more enjoyable living space.
+                                </h6>
+                                <br />
+                                <h6>
+                                    Considering Checking this <a href="https://www.seai.ie/publications/BER-Homeowner-Leaftlet.pdf">link</a> out to find out more about how insulating your home can improve your overall energy consumption.  
+
+                                    <a href="https://www.seai.ie/publications/BER-Homeowner-Leaftlet.pdf"> SEAI</a> provides grants to the public to insulate your home.
+                                </h6>
+
+                                <h6>
+                                    Many companies provide free quotes for home insulation and work with SEAI in order to avail of the grant and save you money! <a href="https://myinsulation.ie">MyInsulation</a> provide quality service for your home improvements.
+                                </h6>
+                                <br />
+                            </div>
                             <div>
                                 <h3 className='section-title'>
                                     <span>Reference </span>Section
